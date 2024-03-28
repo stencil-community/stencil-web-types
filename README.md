@@ -16,3 +16,7 @@ Be sure to add the following to your `package.json`:
 ```json
     "web-type": "./web-types.json"
 ```
+
+## References
+
+https://plugins.jetbrains.com/docs/intellij/websymbols-web-types.html#file-structure
