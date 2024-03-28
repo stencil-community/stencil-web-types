@@ -12,6 +12,6 @@ describe('getWebTypesInfo', () => {
 
     const actual = getWebTypesInfo('ProjectName');
 
-    expect(expected).toEqual(actual);
+    expect(actual).toEqual(expected);
   });
 });

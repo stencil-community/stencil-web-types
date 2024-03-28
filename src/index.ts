@@ -43,7 +43,7 @@ type Contributions = {
   };
 };
 
-type ElementInfo = {
+export type ElementInfo = {
   name: string;
   description: string;
   attributes: AttributeInfo[];
