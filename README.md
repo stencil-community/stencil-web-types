@@ -1,9 +1,20 @@
 # Stencil Web-Types Output Target
 
+## Notice
+
+This package is experimental - It's pre-v1.0, things may change over time.
+
 ## Usage
 
-Add this output target to your `stencil.config.ts` file:
+Install the package:
+```sh
+$ npm i stencil-web-types-output-target
+```
+
+Add the output target to your `stencil.config.ts` file:
 ```ts
+import { webTypesOutputTarget } from 'stencil-web-types-output-target';
+
 export const config: Config = {
   outputTargets: [
     // ...
