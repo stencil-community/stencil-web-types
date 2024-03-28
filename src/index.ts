@@ -10,6 +10,8 @@ import type {
 } from '@stencil/core/internal';
 import type { Config } from '@stencil/core';
 
+import { getWebTypesInfo } from './schema-information.js'
+
 export const webTypesOutputTarget = (): OutputTargetCustom => ({
   type: 'custom',
   name: 'web-types',
@@ -20,7 +22,8 @@ export const webTypesOutputTarget = (): OutputTargetCustom => ({
     const timespan = buildCtx.createTimeSpan('generate web-types started', true);
 
     const webTypes = await generateWebTypes(config, compilerCtx, buildCtx.components);
-    await compilerCtx.fs.writeFile('./web-types.json', JSON.stringify(webTypes, null, 4));
+    // TODO(NOW): Make this configurable
+    await compilerCtx.fs.writeFile('./web-types.json', JSON.stringify(webTypes, null, 2));
 
     timespan.finish('generate web-types finished');
   },
@@ -71,12 +74,13 @@ const generateWebTypes = async (
   compilerCtx: CompilerCtx,
   components: ComponentCompilerMeta[],
 ): Promise<WebType> => {
+  const webTypesInfo = getWebTypesInfo(config.namespace ?? ''); // TOOD(NOW): Validate
   const elements = generateElementInfo(components);
   return {
-    $schema: 'https://raw.githubusercontent.com/JetBrains/web-types/master/schema/web-types.json',
-    'description-markup': 'markdown',
-    name: config.namespace ?? '', // TODO(Validate):
-    version: '0.0.1', // TODO(STENCIL): Do we have this info outside of the bundled artifact?
+    $schema: webTypesInfo.$schema,
+    'description-markup': webTypesInfo["description-markup"],
+    name: webTypesInfo.name,
+    version: webTypesInfo.version,
     contributions: {
       html: {
         elements,
@@ -84,3 +88,4 @@ const generateWebTypes = async (
     },
   };
 };
+
