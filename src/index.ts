@@ -11,7 +11,7 @@ import type {
 import type { Config } from '@stencil/core';
 
 import { getWebTypesInfo } from './schema-information.js';
-import {generateElementInfo} from "./html-element-info";
+import { generateElementInfo } from './html-element-info';
 
 export const webTypesOutputTarget = (): OutputTargetCustom => ({
   type: 'custom',
@@ -53,6 +53,8 @@ export type ElementInfo = {
 type AttributeInfo = {
   name: string;
   description: string;
+  required: boolean;
+  default: string;
 };
 
 const generateWebTypes = async (
@@ -68,7 +70,11 @@ const generateWebTypes = async (
     name: webTypesInfo.name,
     version: webTypesInfo.version,
     contributions: {
+      // the following entries are namespaces - `html`, `js` and `css`
+      // the contents of each namespace are the contributions to that namespace
       html: {
+        // these are symbol kind names.
+        // the full list can be found here: https://plugins.jetbrains.com/docs/intellij/websymbols-web-types.html#direct-support
         elements,
       },
     },

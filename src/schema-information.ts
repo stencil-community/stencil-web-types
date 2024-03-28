@@ -15,6 +15,7 @@ export const getWebTypesInfo = (
 ): { $schema: string; name: string; version: string; 'description-markup': string } => {
   return {
     $schema: 'https://raw.githubusercontent.com/JetBrains/web-types/master/schema/web-types.json',
+    // descriptions are formatted in JSDoc, and are assumed to match markdown
     'description-markup': 'markdown',
     name: namespace,
     version: '0.0.1', // TODO(STENCIL): Do we have this info outside of the bundled artifact?
