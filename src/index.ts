@@ -11,6 +11,7 @@ import type {
 import type { Config } from '@stencil/core';
 
 import { getWebTypesInfo } from './schema-information.js';
+import {generateElementInfo} from "./html-element-info";
 
 export const webTypesOutputTarget = (): OutputTargetCustom => ({
   type: 'custom',
@@ -52,21 +53,6 @@ export type ElementInfo = {
 type AttributeInfo = {
   name: string;
   description: string;
-};
-
-const generateElementInfo = (components: ComponentCompilerMeta[]): ElementInfo[] => {
-  return components.map((cmpMeta: ComponentCompilerMeta) => {
-    return {
-      name: cmpMeta.tagName,
-      description: cmpMeta.docs.text,
-      attributes: cmpMeta.properties.map((prop: ComponentCompilerProperty) => {
-        return {
-          name: prop.attribute as string, // TODO: I can be undefined
-          description: prop.docs.text,
-        };
-      }),
-    };
-  });
 };
 
 const generateWebTypes = async (
