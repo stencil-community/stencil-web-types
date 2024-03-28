@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "description": "an experimental stencil output target supporting web-types",
   "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc -p .",
     "prettier": "npm run prettier.base -- --write",
