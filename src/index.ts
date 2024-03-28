@@ -1,5 +1,5 @@
-import type {BuildCtx, CompilerCtx, Diagnostic, JsonDocs, OutputTargetCustom} from '@stencil/core/internal';
-import type {Config } from "@stencil/core";
+import type { BuildCtx, CompilerCtx, Diagnostic, JsonDocs, OutputTargetCustom } from '@stencil/core/internal';
+import type { Config } from '@stencil/core';
 
 export const webTypesOutputTarget = (): OutputTargetCustom => ({
   type: 'custom',
