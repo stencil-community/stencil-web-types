@@ -9,7 +9,7 @@
     "prettier": "npm run prettier.base -- --write",
     "prettier.base": "prettier --cache \"./src/**/*.ts\"",
     "prettier.dry-run": "npm run prettier.base -- --list-different",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "vitest"
   },
   "author": "ryan waskiewicz",
   "license": "MIT",
@@ -17,7 +17,8 @@
     "@ionic/prettier-config": "^4.0.0",
     "@stencil/core": "^4.13.0",
     "prettier": "3.2.4",
-    "typescript": "^5.4.3"
+    "typescript": "^5.4.3",
+    "vitest": "^1.4.0"
   },
   "prettier": "@ionic/prettier-config"
 }
