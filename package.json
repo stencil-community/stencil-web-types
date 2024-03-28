@@ -1,0 +1,15 @@
+{
+  "name": "web-types-ot",
+  "version": "0.0.0",
+  "description": "an experimental stencil output target supporting web-types",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc -p .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "ryan waskiewicz",
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^5.4.3"
+  }
+}
