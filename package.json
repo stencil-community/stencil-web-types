@@ -1,5 +1,5 @@
 {
-  "name": "web-types-ot",
+  "name": "stencil-web-types-output-target",
   "version": "0.0.0",
   "description": "an experimental stencil output target supporting web-types",
   "main": "dist/index.js",
