@@ -16,7 +16,7 @@ export const getWebTypesInfo = (
   return {
     $schema: 'https://raw.githubusercontent.com/JetBrains/web-types/master/schema/web-types.json',
     'description-markup': 'markdown',
-    name: namespace ?? '', // TODO(Validate):
+    name: namespace,
     version: '0.0.1', // TODO(STENCIL): Do we have this info outside of the bundled artifact?
   };
 };

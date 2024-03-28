@@ -10,7 +10,7 @@ import type {
 } from '@stencil/core/internal';
 import type { Config } from '@stencil/core';
 
-import { getWebTypesInfo } from './schema-information.js'
+import { getWebTypesInfo } from './schema-information.js';
 
 export const webTypesOutputTarget = (): OutputTargetCustom => ({
   type: 'custom',
@@ -78,7 +78,7 @@ const generateWebTypes = async (
   const elements = generateElementInfo(components);
   return {
     $schema: webTypesInfo.$schema,
-    'description-markup': webTypesInfo["description-markup"],
+    'description-markup': webTypesInfo['description-markup'],
     name: webTypesInfo.name,
     version: webTypesInfo.version,
     contributions: {
@@ -88,4 +88,3 @@ const generateWebTypes = async (
     },
   };
 };
-
