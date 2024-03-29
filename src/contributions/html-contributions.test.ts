@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, it } from 'vitest';
 import { generateElementInfo } from './html-contributions';
-import { ElementInfo, SlotInfo } from '../index';
+import { ElementInfo } from '../index';
 import { ComponentCompilerMeta } from '@stencil/core/internal';
 
 describe('generateElementInfo', () => {
@@ -45,6 +45,26 @@ describe('generateElementInfo', () => {
         },
         properties: [],
       });
+    });
+
+    it('parses a component with no slots', () => {
+      const expected: ElementInfo = {
+        name: 'my-component',
+        description: 'a simple component that shows us your name',
+        attributes: [],
+        slots: [],
+      };
+
+      cmpMeta.docs.tags = [
+        {
+          name: 'part',
+          text: 'label - The label text describing the component',
+        },
+      ];
+      const actual: ElementInfo[] = generateElementInfo([cmpMeta]);
+
+      expect(actual).toHaveLength(1);
+      expect(actual[0]).toEqual(expected);
     });
 
     it('parses the default slot', () => {
