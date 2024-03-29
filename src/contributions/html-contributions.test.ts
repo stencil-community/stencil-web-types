@@ -3,35 +3,49 @@ import { generateElementInfo } from './html-contributions';
 import { ElementInfo } from '../index';
 import { ComponentCompilerMeta } from '@stencil/core/internal';
 
+// TODO(NOW): Additional testing
 describe('generateElementInfo', () => {
   it('returns an empty array when no components are provided', () => {
     expect([]).toEqual(generateElementInfo([]));
   });
 
-  it('handles a component with no attributes', () => {
-    const expected: ElementInfo = {
-      name: 'my-component',
-      description: 'a simple component that shows us your name',
-      attributes: [],
-      slots: [],
-    };
+  describe('attributes', () => {
+    let cmpMeta: ComponentCompilerMeta;
 
-    const actual: ElementInfo[] = generateElementInfo([
-      stubComponentCompilerMeta({
+    beforeEach(() => {
+      cmpMeta = stubComponentCompilerMeta({
         tagName: 'my-component',
         docs: {
           text: 'a simple component that shows us your name',
           tags: [],
         },
         properties: [],
-      }),
-    ]);
+      });
+    });
 
-    expect(actual).toHaveLength(1);
-    expect(actual[0]).toEqual(expected);
+    it('handles a component with no attributes', () => {
+      const expected: ElementInfo = {
+        name: 'my-component',
+        description: 'a simple component that shows us your name',
+        attributes: [],
+        slots: [],
+      };
+
+      const actual: ElementInfo[] = generateElementInfo([
+        stubComponentCompilerMeta({
+          tagName: 'my-component',
+          docs: {
+            text: 'a simple component that shows us your name',
+            tags: [],
+          },
+          properties: [],
+        }),
+      ]);
+
+      expect(actual).toHaveLength(1);
+      expect(actual[0]).toEqual(expected);
+    });
   });
-
-  // TODO(NOW): Additional testing
 
   describe('slots', () => {
     let cmpMeta: ComponentCompilerMeta;
