@@ -20,6 +20,7 @@ export const generateElementInfo = (components: ComponentCompilerMeta[]): Elemen
           description: prop.docs.text,
           required: prop.required,
           default: prop.defaultValue ?? '', // TODO is | undefined valid?
+          priority: 'high',
         };
       }),
       slots: cmpMeta.docs.tags

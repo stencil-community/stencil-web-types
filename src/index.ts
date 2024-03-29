@@ -68,6 +68,7 @@ type AttributeInfo = {
   description: string;
   required: boolean;
   default: string;
+  priority: 'lowest' | 'low' | 'normal' | 'high' | 'highest';
 };
 
 /**

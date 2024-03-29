@@ -47,6 +47,7 @@ describe('generateElementInfo', () => {
             default: 'Bob',
             description: 'this is the first name of the user',
             name: 'first-name',
+            priority: 'high',
             required: false,
           },
         ],
