@@ -56,6 +56,11 @@ export type ElementInfo = {
   name: string;
   description: string;
   attributes: AttributeInfo[];
+  /**
+   * All slots associated with the component.
+   * Slots are detected using the `@slot` JSDoc tag on a Stencil component's class JSDoc.
+   */
+  slots: SlotInfo[];
 };
 
 type AttributeInfo = {
@@ -63,6 +68,20 @@ type AttributeInfo = {
   description: string;
   required: boolean;
   default: string;
+};
+
+/**
+ * Describes a slot in a Stencil component
+ */
+export type SlotInfo = {
+  /**
+   * The name of the slot. If empty, it is assumed ot be the default slot.
+   */
+  name: string;
+  /**
+   * A string of text explaining the purpose/usage of the slot
+   */
+  description: string;
 };
 
 const generateWebTypes = async (

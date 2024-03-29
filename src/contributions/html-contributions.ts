@@ -1,4 +1,4 @@
-import type { ComponentCompilerMeta, ComponentCompilerProperty } from '@stencil/core/internal';
+import type { CompilerJsDocTagInfo, ComponentCompilerMeta, ComponentCompilerProperty } from '@stencil/core/internal';
 import { ElementInfo } from '../index';
 
 // https://plugins.jetbrains.com/docs/intellij/websymbols-web-types.html#web-components
@@ -22,6 +22,25 @@ export const generateElementInfo = (components: ComponentCompilerMeta[]): Elemen
           default: prop.defaultValue ?? '', // TODO is | undefined valid?
         };
       }),
+      slots: cmpMeta.docs.tags
+        // we only want '@slot' tags with _some_ amount of text on them
+        .filter((tag: CompilerJsDocTagInfo) => tag.name.toLowerCase() === 'slot' && tag.text)
+        .map((slotTag: CompilerJsDocTagInfo) => {
+          // Stencil supports the following ways of recording slot data in a class component's JSDoc:
+          //   1. Document a default slot, with a description:
+          //   @slot - Content is placed between the named slots if provided without a slot.
+          //   2. Document a named slot, without a description:
+          //   @slot primary
+          //   3. Document a named slot, without a description:
+          //   @slot secondary - Content is placed to the right of the main slotted-in text.
+          // Split on the first '-' to differentiate between the name and the description
+          const [first, ...rest] = slotTag.text!.split('-');
+
+          return {
+            name: first.trim(),
+            description: rest.join(' ').trim(),
+          };
+        }),
     };
   });
 };

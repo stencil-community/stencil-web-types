@@ -1,18 +1,19 @@
-import { describe, expect, test } from 'vitest';
+import { beforeEach, describe, expect, it } from 'vitest';
 import { generateElementInfo } from './html-contributions';
-import { ElementInfo } from '../index';
+import { ElementInfo, SlotInfo } from '../index';
 import { ComponentCompilerMeta } from '@stencil/core/internal';
 
 describe('generateElementInfo', () => {
-  test('returns an empty array when no components are provided', () => {
+  it('returns an empty array when no components are provided', () => {
     expect([]).toEqual(generateElementInfo([]));
   });
 
-  test('handles a component with no attributes', () => {
+  it('handles a component with no attributes', () => {
     const expected: ElementInfo = {
       name: 'my-component',
       description: 'a simple component that shows us your name',
       attributes: [],
+      slots: [],
     };
 
     const actual: ElementInfo[] = generateElementInfo([
@@ -31,6 +32,96 @@ describe('generateElementInfo', () => {
   });
 
   // TODO(NOW): Additional testing
+
+  describe('slots', () => {
+    let cmpMeta: ComponentCompilerMeta;
+
+    beforeEach(() => {
+      cmpMeta = stubComponentCompilerMeta({
+        tagName: 'my-component',
+        docs: {
+          text: 'a simple component that shows us your name',
+          tags: [],
+        },
+        properties: [],
+      });
+    });
+
+    it('parses the default slot', () => {
+      const expected: ElementInfo = {
+        name: 'my-component',
+        description: 'a simple component that shows us your name',
+        attributes: [],
+        slots: [
+          {
+            name: '',
+            description: 'Content is placed between the named slots if provided without a slot.',
+          },
+        ],
+      };
+
+      cmpMeta.docs.tags = [
+        {
+          name: 'slot',
+          text: '- Content is placed between the named slots if provided without a slot.',
+        },
+      ];
+      const actual: ElementInfo[] = generateElementInfo([cmpMeta]);
+
+      expect(actual).toHaveLength(1);
+      expect(actual[0]).toEqual(expected);
+    });
+
+    it('parses a named slot with no description', () => {
+      const expected: ElementInfo = {
+        name: 'my-component',
+        description: 'a simple component that shows us your name',
+        attributes: [],
+        slots: [
+          {
+            name: 'primary',
+            description: '',
+          },
+        ],
+      };
+
+      cmpMeta.docs.tags = [
+        {
+          name: 'slot',
+          text: 'primary ',
+        },
+      ];
+      const actual: ElementInfo[] = generateElementInfo([cmpMeta]);
+
+      expect(actual).toHaveLength(1);
+      expect(actual[0]).toEqual(expected);
+    });
+
+    it('parses a slot with a name and description', () => {
+      const expected: ElementInfo = {
+        name: 'my-component',
+        description: 'a simple component that shows us your name',
+        attributes: [],
+        slots: [
+          {
+            name: 'secondary',
+            description: 'Content is placed to the right of the main slotted in text',
+          },
+        ],
+      };
+
+      cmpMeta.docs.tags = [
+        {
+          name: 'slot',
+          text: 'secondary - Content is placed to the right of the main slotted in text',
+        },
+      ];
+      const actual: ElementInfo[] = generateElementInfo([cmpMeta]);
+
+      expect(actual).toHaveLength(1);
+      expect(actual[0]).toEqual(expected);
+    });
+  });
 });
 
 // TODO(NOW): Need a better way to share this stub from Stencil Core
