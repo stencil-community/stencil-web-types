@@ -23,6 +23,9 @@ export const webTypesOutputTarget = (): OutputTargetCustom => ({
   async generator(config: Config, compilerCtx: CompilerCtx, buildCtx: BuildCtx, docs: JsonDocs) {
     const timespan = buildCtx.createTimeSpan('generate web-types started', true);
 
+    // DEBUG
+    buildCtx.components.forEach((cmp) => console.log(cmp));
+
     const webTypes = await generateWebTypes(config, compilerCtx, buildCtx.components);
     // TODO(NOW): Make this configurable
     await compilerCtx.fs.writeFile('./web-types.json', JSON.stringify(webTypes, null, 2));
