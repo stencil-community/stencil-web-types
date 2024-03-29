@@ -18,7 +18,7 @@ jobs:
       - name: Install dependencies
         run: npm ci
       - name: Run Format Check
-        run: prettier.dry-run
+        run: npm run prettier.dry-run
       - name: Build project
         run: npm run build
       - name: Run Tests

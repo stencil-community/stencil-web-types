@@ -5,3 +5,4 @@ Each framework should define a set of custom symbol kinds if needed.
 Reference for the most important symbol kinds defined by frameworks supported by IDEs is below._ - https://plugins.jetbrains.com/docs/intellij/websymbols-web-types.html#file-structure
 - [ ] Review package.json file settings, are we including the bare minimum?
 - [ ] CI workflows
+- [ ] Is there a better way to express the default slot? "" is a valid name, but looks funky/might not be what folks expect
