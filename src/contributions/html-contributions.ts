@@ -10,16 +10,18 @@ import { ElementInfo } from '../index';
  * @param components the Stencil components to generate info for to contribute to the HTML namespace
  */
 export const generateElementInfo = (components: ComponentCompilerMeta[]): ElementInfo[] => {
-  return components.map((cmpMeta: ComponentCompilerMeta) => {
+  return components.map((cmpMeta: ComponentCompilerMeta): ElementInfo => {
     return {
       name: cmpMeta.tagName,
+      deprecated: !!cmpMeta.docs.tags.find((tag) => tag.name.toLowerCase() === 'deprecated'),
       description: cmpMeta.docs.text,
       attributes: cmpMeta.properties.map((prop: ComponentCompilerProperty) => {
         return {
           name: prop.attribute as string, // TODO: I can be undefined
+          deprecated: !!prop.docs.tags.find((tag) => tag.name.toLowerCase() === 'deprecated'),
           description: prop.docs.text,
           required: prop.required,
-          default: prop.defaultValue ?? '', // TODO is | undefined valid?
+          default: prop.defaultValue ?? '', // TODO is | undefined valid? - Think about this in the context of Stencil `@Prop() first: boolean`;
           priority: 'high',
         };
       }),

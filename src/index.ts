@@ -54,6 +54,7 @@ type Contributions = {
 
 export type ElementInfo = {
   name: string;
+  deprecated: boolean;
   description: string;
   attributes: AttributeInfo[];
   /**
@@ -68,6 +69,7 @@ type AttributeInfo = {
   description: string;
   required: boolean;
   default: string;
+  deprecated: boolean;
   priority: 'lowest' | 'low' | 'normal' | 'high' | 'highest';
 };
 

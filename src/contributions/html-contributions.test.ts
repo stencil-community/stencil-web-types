@@ -9,6 +9,30 @@ describe('generateElementInfo', () => {
     expect([]).toEqual(generateElementInfo([]));
   });
 
+  it.each(['deprecated', 'DEPRECATED', 'Deprecated'])('marks a component as deprecated', (deprecated: string) => {
+    const cmpMeta = stubComponentCompilerMeta({
+      tagName: 'my-component',
+      docs: {
+        text: 'a simple component that shows us your name',
+        tags: [{ name: deprecated }],
+      },
+      properties: [],
+    });
+
+    const expected: ElementInfo = {
+      name: 'my-component',
+      deprecated: true,
+      description: 'a simple component that shows us your name',
+      attributes: [],
+      slots: [],
+    };
+
+    const actual: ElementInfo[] = generateElementInfo([cmpMeta]);
+
+    expect(actual).toHaveLength(1);
+    expect(actual[0]).toEqual(expected);
+  });
+
   describe('attributes', () => {
     let cmpMeta: ComponentCompilerMeta;
 
@@ -26,6 +50,7 @@ describe('generateElementInfo', () => {
     it('handles a component with no attributes', () => {
       const expected: ElementInfo = {
         name: 'my-component',
+        deprecated: false,
         description: 'a simple component that shows us your name',
         attributes: [],
         slots: [],
@@ -41,10 +66,12 @@ describe('generateElementInfo', () => {
     it('parses the properties field into a well formed entry', () => {
       const expected: ElementInfo = {
         name: 'my-component',
+        deprecated: false,
         description: 'a simple component that shows us your name',
         attributes: [
           {
             default: 'Bob',
+            deprecated: false,
             description: 'this is the first name of the user',
             name: 'first-name',
             priority: 'high',
@@ -60,6 +87,47 @@ describe('generateElementInfo', () => {
           docs: {
             text: 'this is the first name of the user',
             tags: [],
+          },
+          defaultValue: 'Bob',
+          required: false,
+          name: '',
+          internal: false,
+          mutable: false,
+          optional: false,
+          type: 'string',
+          complexType: { original: 'string', resolved: 'string', references: {} },
+        },
+      ];
+      const actual: ElementInfo[] = generateElementInfo([cmpMeta]);
+
+      expect(actual).toHaveLength(1);
+      expect(actual[0]).toEqual(expected);
+    });
+
+    it.each(['deprecated', 'DEPRECATED', 'Deprecated'])('marks an attribute as deprecated', (deprecated) => {
+      const expected: ElementInfo = {
+        name: 'my-component',
+        deprecated: false,
+        description: 'a simple component that shows us your name',
+        attributes: [
+          {
+            default: 'Bob',
+            deprecated: true,
+            description: 'this is the first name of the user',
+            name: 'first-name',
+            priority: 'high',
+            required: false,
+          },
+        ],
+        slots: [],
+      };
+
+      cmpMeta.properties = [
+        {
+          attribute: 'first-name',
+          docs: {
+            text: 'this is the first name of the user',
+            tags: [{ name: deprecated, text: '' }],
           },
           defaultValue: 'Bob',
           required: false,
@@ -95,6 +163,7 @@ describe('generateElementInfo', () => {
     it('parses a component with no slots', () => {
       const expected: ElementInfo = {
         name: 'my-component',
+        deprecated: false,
         description: 'a simple component that shows us your name',
         attributes: [],
         slots: [],
@@ -115,6 +184,7 @@ describe('generateElementInfo', () => {
     it('parses the default slot', () => {
       const expected: ElementInfo = {
         name: 'my-component',
+        deprecated: false,
         description: 'a simple component that shows us your name',
         attributes: [],
         slots: [
@@ -140,6 +210,7 @@ describe('generateElementInfo', () => {
     it('parses a named slot with no description', () => {
       const expected: ElementInfo = {
         name: 'my-component',
+        deprecated: false,
         description: 'a simple component that shows us your name',
         attributes: [],
         slots: [
@@ -165,6 +236,7 @@ describe('generateElementInfo', () => {
     it('parses a slot with a name and description', () => {
       const expected: ElementInfo = {
         name: 'my-component',
+        deprecated: false,
         description: 'a simple component that shows us your name',
         attributes: [],
         slots: [
@@ -189,7 +261,6 @@ describe('generateElementInfo', () => {
   });
 });
 
-// TODO(NOW): Need a better way to share this stub from Stencil Core
 /**
  * Generates a stub {@link ComponentCompilerMeta}. This function uses sensible defaults for the initial stub. However,
  * any field in the object may be overridden via the `overrides` argument.
