@@ -7,10 +7,12 @@
  *
  * Note that these fields aren't all strictly required by Web Types.
  *
+ * @param packageVersion the package.json#version field value of the package that these web-types describe
  * @param namespace the Stencil project namespace, to contribute to the `name` field
  * @returns the aforementioned data
  */
 export const getWebTypesInfo = (
+  packageVersion: string,
   namespace: string,
 ): { $schema: string; name: string; version: string; 'description-markup': string } => {
   return {
@@ -18,6 +20,6 @@ export const getWebTypesInfo = (
     // descriptions are formatted in JSDoc, and are assumed to match markdown
     'description-markup': 'markdown',
     name: namespace,
-    version: '0.0.1', // TODO(STENCIL): Do we have this info outside of the bundled artifact?
+    version: packageVersion,
   };
 };

@@ -10,7 +10,7 @@ describe('getWebTypesInfo', () => {
       version: '0.0.1',
     };
 
-    const actual = getWebTypesInfo('ProjectName');
+    const actual = getWebTypesInfo('0.0.1', 'ProjectName');
 
     expect(actual).toEqual(expected);
   });

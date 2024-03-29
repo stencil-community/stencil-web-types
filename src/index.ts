@@ -26,7 +26,7 @@ export const webTypesOutputTarget = (): OutputTargetCustom => ({
     // DEBUG
     buildCtx.components.forEach((cmp) => console.log(cmp));
 
-    const webTypes = await generateWebTypes(config, compilerCtx, buildCtx.components);
+    const webTypes = await generateWebTypes(config, compilerCtx, buildCtx);
     // TODO(NOW): Make this configurable
     await compilerCtx.fs.writeFile('./web-types.json', JSON.stringify(webTypes, null, 2));
 
@@ -88,9 +88,10 @@ export type SlotInfo = {
 const generateWebTypes = async (
   config: StencilConfig,
   compilerCtx: CompilerCtx,
-  components: ComponentCompilerMeta[],
+  buildCtx: BuildCtx,
 ): Promise<WebType> => {
-  const webTypesInfo = getWebTypesInfo(config.namespace ?? ''); // TOOD(NOW): Validate
+  const components = buildCtx.components;
+  const webTypesInfo = getWebTypesInfo(buildCtx.packageJson.version ?? '', config.namespace ?? ''); // TOOD(NOW): Validate
   const elements = generateElementInfo(components);
   return {
     $schema: webTypesInfo.$schema,
