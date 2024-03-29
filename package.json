@@ -4,11 +4,13 @@
   "description": "an experimental stencil output target supporting web-types",
   "main": "dist/index.js",
   "files": [
-    "dist/"
+    "dist/",
+    "!dist/**/*.test.*"
   ],
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc -p .",
+    "clean": "rm -rf dist",
     "prettier": "npm run prettier.base -- --write",
     "prettier.base": "prettier --cache \"./src/**/*.ts\"",
     "prettier.dry-run": "npm run prettier.base -- --list-different",
