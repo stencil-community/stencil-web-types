@@ -19,7 +19,7 @@ export const getWebTypesInfo = (
     $schema: 'https://raw.githubusercontent.com/JetBrains/web-types/master/schema/web-types.json',
     // descriptions are formatted in JSDoc, and are assumed to match markdown
     'description-markup': 'markdown',
-    name: namespace, // TODO(NOW): This is capitial cased
+    name: namespace,
     version: packageVersion,
   };
 };
