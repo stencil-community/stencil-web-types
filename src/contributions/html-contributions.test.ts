@@ -31,16 +31,46 @@ describe('generateElementInfo', () => {
         slots: [],
       };
 
-      const actual: ElementInfo[] = generateElementInfo([
-        stubComponentCompilerMeta({
-          tagName: 'my-component',
+      cmpMeta.properties = [];
+      const actual: ElementInfo[] = generateElementInfo([cmpMeta]);
+
+      expect(actual).toHaveLength(1);
+      expect(actual[0]).toEqual(expected);
+    });
+
+    it('parses the properties field into a well formed entry', () => {
+      const expected: ElementInfo = {
+        name: 'my-component',
+        description: 'a simple component that shows us your name',
+        attributes: [
+          {
+            default: 'Bob',
+            description: 'this is the first name of the user',
+            name: 'first-name',
+            required: false,
+          },
+        ],
+        slots: [],
+      };
+
+      cmpMeta.properties = [
+        {
+          attribute: 'first-name',
           docs: {
-            text: 'a simple component that shows us your name',
+            text: 'this is the first name of the user',
             tags: [],
           },
-          properties: [],
-        }),
-      ]);
+          defaultValue: 'Bob',
+          required: false,
+          name: '',
+          internal: false,
+          mutable: false,
+          optional: false,
+          type: 'string',
+          complexType: { original: 'string', resolved: 'string', references: {} },
+        },
+      ];
+      const actual: ElementInfo[] = generateElementInfo([cmpMeta]);
 
       expect(actual).toHaveLength(1);
       expect(actual[0]).toEqual(expected);
