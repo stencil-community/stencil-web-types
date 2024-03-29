@@ -12,6 +12,7 @@ import type { Config } from '@stencil/core';
 
 import { getWebTypesInfo } from './schema-information.js';
 import { generateElementInfo } from './html-element-info';
+import { generateJsEvents, generateJsProperties } from './js-contributions';
 
 export const webTypesOutputTarget = (): OutputTargetCustom => ({
   type: 'custom',
@@ -41,6 +42,10 @@ type WebType = {
 type Contributions = {
   html: {
     elements: ElementInfo[];
+  };
+  js: {
+    events: any[];
+    properties: any[];
   };
 };
 
@@ -76,6 +81,10 @@ const generateWebTypes = async (
         // these are symbol kind names.
         // the full list can be found here: https://plugins.jetbrains.com/docs/intellij/websymbols-web-types.html#direct-support
         elements,
+      },
+      js: {
+        events: generateJsEvents(components),
+        properties: generateJsProperties(components),
       },
     },
   };
