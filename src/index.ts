@@ -11,8 +11,8 @@ import type {
 import type { Config } from '@stencil/core';
 
 import { getWebTypesInfo } from './schema-information.js';
-import { generateElementInfo } from './html-element-info';
-import { generateJsEvents, generateJsProperties } from './js-contributions';
+import { generateElementInfo } from './contributions/html-contributions';
+import { generateJsEvents, generateJsProperties } from './contributions/js-contributions';
 
 export const webTypesOutputTarget = (): OutputTargetCustom => ({
   type: 'custom',

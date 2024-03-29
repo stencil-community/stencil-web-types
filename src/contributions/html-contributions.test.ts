@@ -1,6 +1,6 @@
 import { describe, expect, test } from 'vitest';
 import { generateElementInfo } from './html-contributions';
-import { ElementInfo } from './index';
+import { ElementInfo } from '../index';
 import { ComponentCompilerMeta } from '@stencil/core/internal';
 
 describe('generateElementInfo', () => {

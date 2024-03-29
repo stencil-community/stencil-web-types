@@ -1,5 +1,5 @@
 import type { ComponentCompilerMeta, ComponentCompilerProperty } from '@stencil/core/internal';
-import { ElementInfo } from './index';
+import { ElementInfo } from '../index';
 
 // https://plugins.jetbrains.com/docs/intellij/websymbols-web-types.html#web-components
 // https://github.com/JetBrains/web-types/blob/2c07137416e4151bfaf44bf3226dca7f1a5e9bd3/schema/web-types.json#L303
