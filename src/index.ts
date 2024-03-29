@@ -91,7 +91,7 @@ const generateWebTypes = async (
   buildCtx: BuildCtx,
 ): Promise<WebType> => {
   const components = buildCtx.components;
-  const webTypesInfo = getWebTypesInfo(buildCtx.packageJson.version ?? '', config.namespace ?? ''); // TOOD(NOW): Validate
+  const webTypesInfo = getWebTypesInfo(buildCtx.packageJson.version ?? '', buildCtx.packageJson.name ?? ''); // TOOD(NOW): Validate
   const elements = generateElementInfo(components);
   return {
     $schema: webTypesInfo.$schema,
