@@ -1,35 +1,32 @@
-import type {
-  BuildCtx,
-  CompilerCtx,
-  ComponentCompilerMeta,
-  ComponentCompilerProperty,
-  Diagnostic,
-  JsonDocs,
-  OutputTargetCustom,
-  StencilConfig,
-} from '@stencil/core/internal';
+import type { BuildCtx, CompilerCtx, OutputTargetCustom } from '@stencil/core/internal';
 import type { Config } from '@stencil/core';
 
 import { getWebTypesInfo } from './schema-information.js';
 import { generateElementInfo } from './contributions/html-contributions';
 import { generateJsEvents, generateJsProperties } from './contributions/js-contributions';
 
+/**
+ * A Stencil output target for generating [web-types](https://github.com/JetBrains/web-types) for a Stencil project.
+ * Web-Types are a JSON format for documenting web components to provide metadata to Integrated Development Environments
+ * (IDEs) for richer intellisense features in HTML files.
+ *
+ * While Web-Types is an IDE agnostic format, it is largely used by the JetBrains family of products - WebStorm,
+ * IntelliJ, etc.
+ *
+ * The usage of this output target is completely optional. However, it can be beneficial for:
+ * 1. Authors of web component libraries, who want greater intellisense when developing locally.
+ * 2. Consumers of web component libraries, whose IDE can use this generated metadata in authoring HTML documents.
+ *
+ * For more information on using this output target, please see the project's README file.
+ */
 export const webTypesOutputTarget = (): OutputTargetCustom => ({
   type: 'custom',
-  name: 'web-types',
-  // TODO(NOW)
-  validate(config: Config, diagnostics: Diagnostic[]) {
-    return true;
-  },
-  async generator(config: Config, compilerCtx: CompilerCtx, buildCtx: BuildCtx, docs: JsonDocs) {
+  name: 'stencil-web-types',
+  async generator(_config: Config, compilerCtx: CompilerCtx, buildCtx: BuildCtx) {
     const timespan = buildCtx.createTimeSpan('generate web-types started', true);
 
-    // DEBUG
-    buildCtx.components.forEach((cmp) => console.log(cmp));
-
-    const webTypes = await generateWebTypes(config, compilerCtx, buildCtx);
-    // TODO(NOW): Make this configurable
-    await compilerCtx.fs.writeFile('./web-types.json', JSON.stringify(webTypes, null, 2));
+    const webTypes = await generateWebTypes(buildCtx);
+    await compilerCtx.fs.writeFile('web-types.json', JSON.stringify(webTypes, null, 2));
 
     timespan.finish('generate web-types finished');
   },
@@ -88,14 +85,15 @@ export type SlotInfo = {
   description: string;
 };
 
-const generateWebTypes = async (
-  config: StencilConfig,
-  compilerCtx: CompilerCtx,
-  buildCtx: BuildCtx,
-): Promise<WebType> => {
-  const components = buildCtx.components;
+/**
+ * Generate the contents of the web-types document
+ * @param buildCtx the Stencil build context, which holds the build-time metadata for a project's Stencil components
+ * @returns the generated web-types document contents
+ */
+const generateWebTypes = async (buildCtx: BuildCtx): Promise<WebType> => {
   const webTypesInfo = getWebTypesInfo(buildCtx.packageJson.version ?? '', buildCtx.packageJson.name ?? ''); // TOOD(NOW): Validate
-  const elements = generateElementInfo(components);
+  const { components } = buildCtx;
+
   return {
     $schema: webTypesInfo.$schema,
     'description-markup': webTypesInfo['description-markup'],
@@ -107,7 +105,7 @@ const generateWebTypes = async (
       html: {
         // these are symbol kind names.
         // the full list can be found here: https://plugins.jetbrains.com/docs/intellij/websymbols-web-types.html#direct-support
-        elements,
+        elements: generateElementInfo(components),
       },
       js: {
         events: generateJsEvents(components),
