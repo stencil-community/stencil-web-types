@@ -7,10 +7,10 @@ import { ElementInfo } from '../index';
 // https://github.com/JetBrains/web-types/blob/2c07137416e4151bfaf44bf3226dca7f1a5e9bd3/schema/web-types.json#L922
 /**
  * Generate an array of symbol contributions to the HTML namespace
- * @param components the Stencil components to generate info for to contribute to the HTML namespace
+ * @param compnentMetadata the Stencil component metadata to generate info for to contribute to the HTML namespace
  */
-export const generateElementInfo = (components: ComponentCompilerMeta[]): ElementInfo[] => {
-  return components.map((cmpMeta: ComponentCompilerMeta): ElementInfo => {
+export const generateElementInfo = (compnentMetadata: ComponentCompilerMeta[]): ElementInfo[] => {
+  return compnentMetadata.map((cmpMeta: ComponentCompilerMeta): ElementInfo => {
     return {
       name: cmpMeta.tagName,
       deprecated: !!cmpMeta.docs.tags.find((tag) => tag.name.toLowerCase() === 'deprecated'),
@@ -31,11 +31,11 @@ export const generateElementInfo = (components: ComponentCompilerMeta[]): Elemen
         .map((slotTag: CompilerJsDocTagInfo) => {
           // Stencil supports the following ways of recording slot data in a class component's JSDoc:
           //   1. Document a default slot, with a description:
-          //   @slot - Content is placed between the named slots if provided without a slot.
+          //   `@slot - Content is placed between the named slots if provided without a slot.`
           //   2. Document a named slot, without a description:
-          //   @slot primary
+          //   `@slot primary`
           //   3. Document a named slot, without a description:
-          //   @slot secondary - Content is placed to the right of the main slotted-in text.
+          //   `@slot secondary - Content is placed to the right of the main slotted-in text.`
           // Split on the first '-' to differentiate between the name and the description
           const [first, ...rest] = slotTag.text!.split('-');
 

@@ -262,6 +262,8 @@ describe('generateElementInfo', () => {
 });
 
 /**
+ * Attribution: https://github.com/ionic-team/stencil/blob/85221bca12087f658328f05aba3f038c5abd4abf/src/compiler/types/tests/ComponentCompilerMeta.stub.ts#L10
+ *
  * Generates a stub {@link ComponentCompilerMeta}. This function uses sensible defaults for the initial stub. However,
  * any field in the object may be overridden via the `overrides` argument.
  * @param overrides a partial implementation of `ComponentCompilerMeta`. Any provided fields will override the

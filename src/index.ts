@@ -17,6 +17,7 @@ import { generateJsEvents, generateJsProperties } from './contributions/js-contr
 export const webTypesOutputTarget = (): OutputTargetCustom => ({
   type: 'custom',
   name: 'web-types',
+  // TODO(NOW)
   validate(config: Config, diagnostics: Diagnostic[]) {
     return true;
   },
