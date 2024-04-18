@@ -28,6 +28,8 @@ export namespace Components {
          */
         "suffix": string;
     }
+    interface SlotExample {
+    }
 }
 declare global {
     /**
@@ -39,8 +41,15 @@ declare global {
         prototype: HTMLMyComponentElement;
         new (): HTMLMyComponentElement;
     };
+    interface HTMLSlotExampleElement extends Components.SlotExample, HTMLStencilElement {
+    }
+    var HTMLSlotExampleElement: {
+        prototype: HTMLSlotExampleElement;
+        new (): HTMLSlotExampleElement;
+    };
     interface HTMLElementTagNameMap {
         "my-component": HTMLMyComponentElement;
+        "slot-example": HTMLSlotExampleElement;
     }
 }
 declare namespace LocalJSX {
@@ -66,8 +75,11 @@ declare namespace LocalJSX {
          */
         "suffix"?: string;
     }
+    interface SlotExample {
+    }
     interface IntrinsicElements {
         "my-component": MyComponent;
+        "slot-example": SlotExample;
     }
 }
 export { LocalJSX as JSX };
@@ -78,6 +90,7 @@ declare module "@stencil/core" {
              * A component for displaying a person's name
              */
             "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
+            "slot-example": LocalJSX.SlotExample & JSXBase.HTMLAttributes<HTMLSlotExampleElement>;
         }
     }
 }
