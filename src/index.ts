@@ -32,6 +32,36 @@ export const webTypesOutputTarget = (): OutputTargetCustom => ({
   },
 });
 
+/**
+ * Generate the contents of the web-types document
+ * @param buildCtx the Stencil build context, which holds the build-time metadata for a project's Stencil components
+ * @returns the generated web-types document contents
+ */
+const generateWebTypes = async (buildCtx: BuildCtx): Promise<WebType> => {
+  const webTypesInfo = getWebTypesInfo(buildCtx.packageJson.version ?? '', buildCtx.packageJson.name ?? ''); // TOOD(NOW): Validate
+  const { components } = buildCtx;
+
+  return {
+    $schema: webTypesInfo.$schema,
+    'description-markup': webTypesInfo['description-markup'],
+    name: webTypesInfo.name,
+    version: webTypesInfo.version,
+    contributions: {
+      // the following entries are namespaces - `html`, `js` and `css`
+      // the contents of each namespace are the contributions to that namespace
+      html: {
+        // these are symbol kind names.
+        // the full list can be found here: https://plugins.jetbrains.com/docs/intellij/websymbols-web-types.html#direct-support
+        elements: generateElementInfo(components),
+      },
+      js: {
+        events: generateJsEvents(components),
+        properties: generateJsProperties(components),
+      },
+    },
+  };
+};
+
 type WebType = {
   $schema: string;
   name: string;
@@ -83,34 +113,4 @@ export type SlotInfo = {
    * A string of text explaining the purpose/usage of the slot
    */
   description: string;
-};
-
-/**
- * Generate the contents of the web-types document
- * @param buildCtx the Stencil build context, which holds the build-time metadata for a project's Stencil components
- * @returns the generated web-types document contents
- */
-const generateWebTypes = async (buildCtx: BuildCtx): Promise<WebType> => {
-  const webTypesInfo = getWebTypesInfo(buildCtx.packageJson.version ?? '', buildCtx.packageJson.name ?? ''); // TOOD(NOW): Validate
-  const { components } = buildCtx;
-
-  return {
-    $schema: webTypesInfo.$schema,
-    'description-markup': webTypesInfo['description-markup'],
-    name: webTypesInfo.name,
-    version: webTypesInfo.version,
-    contributions: {
-      // the following entries are namespaces - `html`, `js` and `css`
-      // the contents of each namespace are the contributions to that namespace
-      html: {
-        // these are symbol kind names.
-        // the full list can be found here: https://plugins.jetbrains.com/docs/intellij/websymbols-web-types.html#direct-support
-        elements: generateElementInfo(components),
-      },
-      js: {
-        events: generateJsEvents(components),
-        properties: generateJsProperties(components),
-      },
-    },
-  };
 };
