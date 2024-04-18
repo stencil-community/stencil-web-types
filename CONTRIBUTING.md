@@ -46,7 +46,8 @@ Please see our [Contributor Code of Conduct](https://github.com/stencil-communit
 4. This repo uses [volta](https://volta.sh) to manage its npm and Node versions.
    [Install it](https://docs.volta.sh/guide/getting-started) before proceeding.
     1. There's no need to install a specific version of npm or Node right now, it shall be done automatically for you in the next step.
-5. Run `npm ci`
+5. Run `npm ci` to install dependencies
+6. Run `npm run build` to build the project
 
 ### Updates
 
