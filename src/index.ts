@@ -1,9 +1,7 @@
 import type { BuildCtx, CompilerCtx, OutputTargetCustom } from '@stencil/core/internal';
 import type { Config } from '@stencil/core';
 
-import { getWebTypesInfo } from './schema-information.js';
-import { generateElementInfo } from './contributions/html-contributions';
-import { generateJsEvents, generateJsProperties } from './contributions/js-contributions';
+import { generateWebTypes } from './generate-web-types.js';
 
 /**
  * A Stencil output target for generating [web-types](https://github.com/JetBrains/web-types) for a Stencil project.
@@ -25,45 +23,12 @@ export const webTypesOutputTarget = (): OutputTargetCustom => ({
   async generator(_config: Config, compilerCtx: CompilerCtx, buildCtx: BuildCtx) {
     const timespan = buildCtx.createTimeSpan('generate web-types started', true);
 
-    const webTypes = await generateWebTypes(buildCtx);
+    const webTypes = generateWebTypes(buildCtx);
     await compilerCtx.fs.writeFile('web-types.json', JSON.stringify(webTypes, null, 2));
 
     timespan.finish('generate web-types finished');
   },
 });
-
-/**
- * Generate the contents of the web-types document
- * @param buildCtx the Stencil build context, which holds the build-time metadata for a project's Stencil components
- * @returns the generated web-types document contents
- */
-export const generateWebTypes = (buildCtx: BuildCtx): WebType => {
-  const { components, packageJson } = buildCtx;
-  const webTypesInfo = getWebTypesInfo(
-    packageJson.version ?? 'UNKNOWN_VERSION',
-    packageJson.name ?? 'UNKNOWN_PKG_NAME',
-  );
-
-  return {
-    $schema: webTypesInfo.$schema,
-    'description-markup': webTypesInfo['description-markup'],
-    name: webTypesInfo.name,
-    version: webTypesInfo.version,
-    contributions: {
-      // the following entries are namespaces - `html`, `js` and `css`
-      // the contents of each namespace are the contributions to that namespace
-      html: {
-        // these are symbol kind names.
-        // the full list can be found here: https://plugins.jetbrains.com/docs/intellij/websymbols-web-types.html#direct-support
-        elements: generateElementInfo(components),
-      },
-      js: {
-        events: generateJsEvents(components),
-        properties: generateJsProperties(components),
-      },
-    },
-  };
-};
 
 export type WebType = {
   $schema: string;
