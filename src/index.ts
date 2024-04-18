@@ -37,9 +37,12 @@ export const webTypesOutputTarget = (): OutputTargetCustom => ({
  * @param buildCtx the Stencil build context, which holds the build-time metadata for a project's Stencil components
  * @returns the generated web-types document contents
  */
-const generateWebTypes = async (buildCtx: BuildCtx): Promise<WebType> => {
-  const webTypesInfo = getWebTypesInfo(buildCtx.packageJson.version ?? '', buildCtx.packageJson.name ?? ''); // TOOD(NOW): Validate
-  const { components } = buildCtx;
+export const generateWebTypes = (buildCtx: BuildCtx): WebType => {
+  const { components, packageJson } = buildCtx;
+  const webTypesInfo = getWebTypesInfo(
+    packageJson.version ?? 'UNKNOWN_VERSION',
+    packageJson.name ?? 'UNKNOWN_PKG_NAME',
+  );
 
   return {
     $schema: webTypesInfo.$schema,
@@ -62,7 +65,7 @@ const generateWebTypes = async (buildCtx: BuildCtx): Promise<WebType> => {
   };
 };
 
-type WebType = {
+export type WebType = {
   $schema: string;
   name: string;
   version: string;
