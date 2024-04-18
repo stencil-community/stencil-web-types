@@ -63,6 +63,44 @@ describe('generateElementInfo', () => {
       expect(actual[0]).toEqual(expected);
     });
 
+    it('does not include properties that do not have a name', () => {
+      cmpMeta.properties = [
+        {
+          attribute: undefined,
+          docs: {
+            text: 'this is the first name of the user',
+            tags: [],
+          },
+          required: false,
+          name: '',
+          internal: false,
+          mutable: false,
+          optional: false,
+          type: 'string',
+          complexType: { original: 'string', resolved: 'string', references: {} },
+        },
+        {
+          attribute: '',
+          docs: {
+            text: 'this is the first name of the user',
+            tags: [],
+          },
+          required: false,
+          name: '',
+          internal: false,
+          mutable: false,
+          optional: false,
+          type: 'string',
+          complexType: { original: 'string', resolved: 'string', references: {} },
+        },
+      ];
+
+      const actual: ElementInfo[] = generateElementInfo([cmpMeta]);
+
+      expect(actual).toHaveLength(1);
+      expect(actual[0].attributes).toHaveLength(0);
+    });
+
     it('parses the properties field into a well formed entry', () => {
       const expected: ElementInfo = {
         name: 'my-component',

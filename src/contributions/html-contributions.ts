@@ -15,16 +15,20 @@ export const generateElementInfo = (compnentMetadata: ComponentCompilerMeta[]): 
       name: cmpMeta.tagName,
       deprecated: !!cmpMeta.docs.tags.find((tag) => tag.name.toLowerCase() === 'deprecated'),
       description: cmpMeta.docs.text,
-      attributes: cmpMeta.properties.map((prop: ComponentCompilerProperty) => {
-        return {
-          name: prop.attribute as string, // TODO: I can be undefined
-          deprecated: !!prop.docs.tags.find((tag) => tag.name.toLowerCase() === 'deprecated'),
-          description: prop.docs.text,
-          required: prop.required,
-          default: prop.defaultValue ?? '', // TODO is | undefined valid? - Think about this in the context of Stencil `@Prop() first: boolean`;
-          priority: 'high',
-        };
-      }),
+      attributes: cmpMeta.properties
+        .filter((prop: ComponentCompilerProperty): prop is ComponentCompilerProperty & { attribute: string } => {
+          return !!prop.attribute;
+        })
+        .map((prop) => {
+          return {
+            name: prop.attribute,
+            deprecated: !!prop.docs.tags.find((tag) => tag.name.toLowerCase() === 'deprecated'),
+            description: prop.docs.text,
+            required: prop.required,
+            default: prop.defaultValue ?? '', // TODO is | undefined valid? - Think about this in the context of Stencil `@Prop() first: boolean`;
+            priority: 'high',
+          };
+        }),
       slots: cmpMeta.docs.tags
         // we only want '@slot' tags with _some_ amount of text on them
         .filter((tag: CompilerJsDocTagInfo) => tag.name.toLowerCase() === 'slot' && tag.text)
