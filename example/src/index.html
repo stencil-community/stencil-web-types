@@ -9,6 +9,15 @@
     <script nomodule src="/build/example.js"></script>
   </head>
   <body>
-    <my-component first="Stencil" last="'Don't call me a framework' JS"></my-component>
+    <!-- See the repo's README for setup instructions -->
+    <!-- After setup, hover over the component name and each of the props -->
+    <!--
+         - my-component will have its description pulled from it's JSDoc
+         - first will have its description pulled from its JSDoc. Its required status will be reported.
+         - middle will have its description pulled from its JSDoc. Its default value will be reported.
+         - last will have its description pulled from its JSDoc.
+         - suffix will have its description pulled from its JSDoc. It will be reported as deprecated.
+    -->
+    <my-component first="Stencil" middle=" " last="'Don't call me a framework'" suffix="JS"></my-component>
   </body>
 </html>

@@ -1,0 +1,77 @@
+{
+  "$schema": "https://raw.githubusercontent.com/JetBrains/web-types/master/schema/web-types.json",
+  "description-markup": "markdown",
+  "name": "example",
+  "version": "0.0.1",
+  "contributions": {
+    "html": {
+      "elements": [
+        {
+          "name": "my-component",
+          "deprecated": false,
+          "description": "A component for displaying a person's name",
+          "attributes": [
+            {
+              "name": "first",
+              "deprecated": false,
+              "description": "The first name, which is required",
+              "required": true,
+              "default": "",
+              "priority": "high"
+            },
+            {
+              "name": "middle",
+              "deprecated": false,
+              "description": "The middle name, defaults to \"Unknown\"",
+              "required": false,
+              "default": "\"Unknown\"",
+              "priority": "high"
+            },
+            {
+              "name": "last",
+              "deprecated": false,
+              "description": "The last name",
+              "required": false,
+              "default": "",
+              "priority": "high"
+            },
+            {
+              "name": "suffix",
+              "deprecated": true,
+              "description": "A suffix, for titles like \"PhD\" and \"MBA\"",
+              "required": false,
+              "default": "",
+              "priority": "high"
+            }
+          ],
+          "slots": []
+        }
+      ]
+    },
+    "js": {
+      "events": [
+        {
+          "events": []
+        }
+      ],
+      "properties": [
+        {
+          "properties": [
+            {
+              "name": "first"
+            },
+            {
+              "name": "middle"
+            },
+            {
+              "name": "last"
+            },
+            {
+              "name": "suffix"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

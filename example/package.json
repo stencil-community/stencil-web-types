@@ -39,8 +39,10 @@
     "generate": "stencil generate"
   },
   "devDependencies": {
+    "@stencil-community/web-types-output-target": "file:..",
     "@stencil/core": "^4.7.0",
     "@types/node": "^16.18.11"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "web-types": "./web-types.json"
 }
