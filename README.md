@@ -24,13 +24,13 @@ Once the feature is enabled and your IDE is informed of the JSON file's location
 The web-types output target is not built in to Stencil itself.
 Instead, it's a third party package, that needs to be installed as a dev dependency:
 ```bash
-$ npm i --save-dev  stencil-web-types-output-target
+$ npm i --save-dev @stencil-community/web-types-output-target
 ```
 
 To generate custom element information for JetBrains IDE's, add the `docs-web-types` output target to your `stencil.config.ts`:
 ```tsx
 import { Config } from '@stencil/core';
-import { webTypesOutputTarget } from 'stencil-web-types-output-target';
+import { webTypesOutputTarget } from '@stencil-community/web-types-output-target';
 
 export const config: Config = {
   outputTargets: [

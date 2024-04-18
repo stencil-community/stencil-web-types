@@ -4,7 +4,7 @@ Thanks for your interest in contributing! 🎉
 
 ## Contributing Etiquette
 
-Please see our [Contributor Code of Conduct](https://github.com/rwaskiewicz/stencil-web-types/blob/main/CODE_OF_CONDUCT.md) for information on our rules of conduct.
+Please see our [Contributor Code of Conduct](https://github.com/stencil-community/stencil-web-types/blob/main/CODE_OF_CONDUCT.md) for information on our rules of conduct.
 
 ## Reporting a Bug
 
@@ -16,27 +16,27 @@ Please see our [Contributor Code of Conduct](https://github.com/rwaskiewicz/sten
 
 - Issues with no clear steps to reproduce will not be triaged.
 
-- If you think you have found a bug, please start by making sure it hasn't already been [reported](https://github.com/rwaskiewicz/stencil-web-types/issues?utf8=%E2%9C%93&q=is%3Aissue). You can search through existing issues to see if there is a similar one reported. Include closed issues as it may have been closed with a solution.
+- If you think you have found a bug, please start by making sure it hasn't already been [reported](https://github.com/stencil-community/stencil-web-types/issues?utf8=%E2%9C%93&q=is%3Aissue). You can search through existing issues to see if there is a similar one reported. Include closed issues as it may have been closed with a solution.
 
   - If a bug report already exists, please upvote it using the :+1: reaction on the GitHub Issue summary. The team is currently unable to track "+1" style comments on the issue.
 
-- Next, [create a new issue](https://github.com/rwaskiewicz/stencil-web-types/issues/new) that thoroughly explains the problem.
+- Next, [create a new issue](https://github.com/stencil-community/stencil-web-types/issues/new) that thoroughly explains the problem.
   - Please fill out the issue form in full before submitting.
   - Please only include one bug per issue.
 
 ## Requesting a Feature
 
-- Before requesting a feature, please start by making sure it hasn't already been [proposed](https://github.com/rwaskiewicz/stencil-web-types/issues?utf8=%E2%9C%93&q=is%3Aissue). You can search through existing GitHub issues to see if there is a similar feature request has been reported. Include closed feature requests, as it may have been closed already.
+- Before requesting a feature, please start by making sure it hasn't already been [proposed](https://github.com/stencil-community/stencil-web-types/issues?utf8=%E2%9C%93&q=is%3Aissue). You can search through existing GitHub issues to see if there is a similar feature request has been reported. Include closed feature requests, as it may have been closed already.
 
   - If a feature request already exists, please upvote it using the :+1: reaction on the GitHub Issue summary. The team is currently unable to track "+1" style comments on the issue.
 
-- Next, [create a new feature request](https://github.com/rwaskiewicz/stencil-web-types/issues/new?assignees=&labels=&projects=&template=feature_request.yml&title=feat%3A+) that thoroughly explains the feature request.
+- Next, [create a new feature request](https://github.com/stencil-community/stencil-web-types/issues/new?assignees=&labels=&projects=&template=feature_request.yml&title=feat%3A+) that thoroughly explains the feature request.
   - Please fill out the feature request form in full before submitting.
   - Please only include one feature request per report.
 
 ## Creating a Pull Request
 
-- We appreciate you taking the time to contribute! Before submitting a pull request, we ask that you please [create an issue](#creating-an-issue) that explains the bug or feature request and let us know that you plan on creating a pull request for it. If an issue already exists, please comment on that issue letting us know you would like to submit a pull request for it. This helps us to keep track of the pull request and make sure there isn't duplicated effort.
+- We appreciate you taking the time to contribute! Before submitting a pull request, we ask that you please [create an issue](#reporting-a-bug) that explains the bug or feature request and let us know that you plan on creating a pull request for it. If an issue already exists, please comment on that issue letting us know you would like to submit a pull request for it. This helps us to keep track of the pull request and make sure there isn't duplicated effort.
 
 ### Setup
 
@@ -64,14 +64,14 @@ Using `npm link` is beneficial to the development cycle in that consecutive buil
    1. Run `npm run build`
    2. Run `npm link`
 2. In the directory of _your stencil project_:
-   1. Run `npm link stencil-web-types-output-target`
+   1. Run `npm link @stencil-community/web-types-output-target`
 
 You can then test your changes against your own Stencil project.
 
 Afterward, to clean up:
 
 1. In the directory of _your stencil project_:
-   1. Run `npm unlink stencil-web-types-output-target`
+   1. Run `npm unlink @stencil-community/web-types-output-target`
 2. In the directory of _Stencil Web Types_, run `npm unlink`
 
 #### Testing with `npm pack`:
@@ -81,15 +81,15 @@ Rather than running `hnpm ` it may be easier to create a tarball of the project 
 
 1. In the directory of _Stencil Web Types_:
    1. Run `npm run build`
-   2. Run `npm pack`. This will create a tarball with the name `stencil-web-types-output-target-<VERSION>.tgz`
+   2. Run `npm pack`. This will create a tarball with the name `stencil-community-web-types-output-target-<VERSION>.tgz`
 2. In the directory of _your stencil project_:
-   1. Run `npm install --save-dev <PATH_TO_STENCIL_WEB_TYPES_REPO_ON_DISK>/stencil-web-types-output-target-<VERSION>.tgz`.
+   1. Run `npm install --save-dev <PATH_TO_STENCIL_WEB_TYPES_REPO_ON_DISK>/stencil-community-web-types-output-target-<VERSION>.tgz`.
 
 Note that this method of testing is far more laborious than using `npm link`, and requires every step to be repeated following a change to the Stencil core source.
 
 Afterward, to clean up:
 
-1. In the directory of your Stencil project, run `npm install --save-dev rwaskiewicz/web-types-output-target@<VERSION>` for the `<VERSION>` of Stencil web-types that was installed in your project prior to testing.
+1. In the directory of your Stencil project, run `npm install --save-dev @stencil-community/web-types-output-target@<VERSION>` for the `<VERSION>` of Stencil web-types that was installed in your project prior to testing.
 
 ### Commit Message Format
 
@@ -110,7 +110,7 @@ Must be one of the following:
 - **feat**: A new feature
 - **fix**: A bug fix
 - **docs**: Documentation only changes
-- **style**: Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc)
+- **style**: Changes that do not affect the meaning of the code (white-space, formatting, missing semicolons, etc.)
 - **refactor**: A code change that neither fixes a bug nor adds a feature
 - **perf**: A code change that improves performance
 - **test**: Adding missing tests
