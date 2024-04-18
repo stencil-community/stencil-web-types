@@ -19,7 +19,7 @@ import { generateWebTypes } from './generate-web-types.js';
  */
 export const webTypesOutputTarget = (): OutputTargetCustom => ({
   type: 'custom',
-  name: 'stencil-web-types',
+  name: 'web-types-output-target',
   async generator(_config: Config, compilerCtx: CompilerCtx, buildCtx: BuildCtx) {
     const timespan = buildCtx.createTimeSpan('generate web-types started', true);
 
