@@ -18,6 +18,18 @@
          - last will have its description pulled from its JSDoc.
          - suffix will have its description pulled from its JSDoc. It will be reported as deprecated.
     -->
+    <h2>Prop Example (&lt;my-component&gt;)</h2>
     <my-component first="Stencil" middle=" " last="'Don't call me a framework'" suffix="JS"></my-component>
+
+    <br/>
+
+    <!-- After setup, hover over the slot names - each of the slot's descriptions will be shown by intellisense -->
+    <!-- Also try deleting one of the slot attributes, notice how intellisense suggests the slot names for you! -->
+    <h2>Slot Example (&lt;slot-example&gt;)</h2>
+    <slot-example>
+      <div>Main content</div>
+      <div slot="primary">Primary Content</div>
+      <div slot="secondary">Secondary Content</div>
+    </slot-example>
   </body>
 </html>

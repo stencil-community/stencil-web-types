@@ -45,11 +45,34 @@
             }
           ],
           "slots": []
+        },
+        {
+          "name": "slot-example",
+          "deprecated": false,
+          "description": "",
+          "attributes": [],
+          "slots": [
+            {
+              "name": "",
+              "description": "Content is placed between the named slots if provided without a slot."
+            },
+            {
+              "name": "primary",
+              "description": "Content is placed to the left of the main slotted in text."
+            },
+            {
+              "name": "secondary",
+              "description": ""
+            }
+          ]
         }
       ]
     },
     "js": {
       "events": [
+        {
+          "events": []
+        },
         {
           "events": []
         }
@@ -70,6 +93,9 @@
               "name": "suffix"
             }
           ]
+        },
+        {
+          "properties": []
         }
       ]
     }
