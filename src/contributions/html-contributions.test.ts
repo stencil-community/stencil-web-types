@@ -25,6 +25,7 @@ describe('generateElementInfo', () => {
       description: 'a simple component that shows us your name',
       attributes: [],
       slots: [],
+      css: {},
     };
 
     const actual: ElementInfo[] = generateElementInfo([cmpMeta]);
@@ -54,6 +55,7 @@ describe('generateElementInfo', () => {
         description: 'a simple component that shows us your name',
         attributes: [],
         slots: [],
+        css: {},
       };
 
       cmpMeta.properties = [];
@@ -117,6 +119,7 @@ describe('generateElementInfo', () => {
           },
         ],
         slots: [],
+        css: {},
       };
 
       cmpMeta.properties = [
@@ -158,6 +161,7 @@ describe('generateElementInfo', () => {
           },
         ],
         slots: [],
+        css: {},
       };
 
       cmpMeta.properties = [
@@ -201,16 +205,17 @@ describe('generateElementInfo', () => {
     it('parses a component with no slots', () => {
       const expected: ElementInfo = {
         name: 'my-component',
-        deprecated: false,
+        deprecated: true,
         description: 'a simple component that shows us your name',
         attributes: [],
         slots: [],
+        css: {},
       };
 
       cmpMeta.docs.tags = [
         {
-          name: 'part',
-          text: 'label - The label text describing the component',
+          name: 'deprecated',
+          text: "please don't use this",
         },
       ];
       const actual: ElementInfo[] = generateElementInfo([cmpMeta]);
@@ -231,6 +236,7 @@ describe('generateElementInfo', () => {
             description: 'Content is placed between the named slots if provided without a slot.',
           },
         ],
+        css: {},
       };
 
       cmpMeta.docs.tags = [
@@ -257,6 +263,7 @@ describe('generateElementInfo', () => {
             description: '',
           },
         ],
+        css: {},
       };
 
       cmpMeta.docs.tags = [
@@ -283,6 +290,7 @@ describe('generateElementInfo', () => {
             description: 'Content is placed to the right of the main slotted in text',
           },
         ],
+        css: {},
       };
 
       cmpMeta.docs.tags = [
@@ -291,6 +299,70 @@ describe('generateElementInfo', () => {
           text: 'secondary - Content is placed to the right of the main slotted in text',
         },
       ];
+      const actual: ElementInfo[] = generateElementInfo([cmpMeta]);
+
+      expect(actual).toHaveLength(1);
+      expect(actual[0]).toEqual(expected);
+    });
+  });
+
+  describe('shadow parts', () => {
+    let cmpMeta: ComponentCompilerMeta;
+
+    beforeEach(() => {
+      cmpMeta = stubComponentCompilerMeta({
+        tagName: 'my-component',
+        docs: {
+          text: 'a simple component that shows us your name',
+          tags: [],
+        },
+        properties: [],
+      });
+    });
+
+    it('parses a component with shadow parts', () => {
+      const expected: ElementInfo = {
+        name: 'my-component',
+        deprecated: false,
+        description: 'a simple component that shows us your name',
+        attributes: [],
+        slots: [],
+        css: {
+          parts: [
+            // note how these will be sorted by name
+            { name: 'another-label', description: 'Another label describing the component' },
+            { name: 'label', description: 'The label describing the component' },
+          ],
+        },
+      };
+
+      cmpMeta.docs.tags = [
+        {
+          name: 'part',
+          text: 'label - The label describing the component',
+        },
+        {
+          name: 'part',
+          text: 'another-label - Another label describing the component',
+        },
+      ];
+      const actual: ElementInfo[] = generateElementInfo([cmpMeta]);
+
+      expect(actual).toHaveLength(1);
+      expect(actual[0]).toEqual(expected);
+    });
+
+    it('omits the parts section when there are no shadow parts', () => {
+      const expected: ElementInfo = {
+        name: 'my-component',
+        deprecated: false,
+        description: 'a simple component that shows us your name',
+        attributes: [],
+        slots: [],
+        css: {},
+      };
+
+      cmpMeta.docs.tags = [];
       const actual: ElementInfo[] = generateElementInfo([cmpMeta]);
 
       expect(actual).toHaveLength(1);
