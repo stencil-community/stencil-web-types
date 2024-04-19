@@ -41,7 +41,7 @@
   "devDependencies": {
     "@stencil-community/web-types-output-target": "file:..",
     "@stencil/core": "^4.7.0",
-    "@types/node": "^16.18.11"
+    "@types/node": "^20.0.0"
   },
   "license": "MIT",
   "web-types": "./web-types.json"
