@@ -6,6 +6,7 @@ import type {
 } from '@stencil/core/internal';
 import { CssPart, ElementInfo } from '../index';
 import { JsonDocsPart } from '@stencil/core/internal/stencil-public-docs';
+import { relative } from 'path';
 
 // https://plugins.jetbrains.com/docs/intellij/websymbols-web-types.html#web-components
 // https://github.com/JetBrains/web-types/blob/2c07137416e4151bfaf44bf3226dca7f1a5e9bd3/schema/web-types.json#L303
@@ -14,8 +15,13 @@ import { JsonDocsPart } from '@stencil/core/internal/stencil-public-docs';
 /**
  * Generate an array of symbol contributions to the HTML namespace
  * @param componentMetadata the Stencil component metadata to generate info for to contribute to the HTML namespace
+ * @param stencilRootDir the root directory of a Stencil project
+ * @returns the symbol contributions to the HTML namespace
  */
-export const generateElementInfo = (componentMetadata: ComponentCompilerMeta[]): ElementInfo[] => {
+export const generateElementInfo = (
+  componentMetadata: ComponentCompilerMeta[],
+  stencilRootDir: string,
+): ElementInfo[] => {
   return componentMetadata.map((cmpMeta: ComponentCompilerMeta): ElementInfo => {
     // avoid serializing parts for css contributions for an element if we can avoid it
     let cssParts: CssPart[] | undefined = getDocsParts(cmpMeta.htmlParts, cmpMeta.docs.tags).map((parts) => {
@@ -27,6 +33,10 @@ export const generateElementInfo = (componentMetadata: ComponentCompilerMeta[]):
       name: cmpMeta.tagName,
       deprecated: !!cmpMeta.docs.tags.find((tag) => tag.name.toLowerCase() === 'deprecated'),
       description: cmpMeta.docs.text,
+      source: {
+        module: relative(stencilRootDir, cmpMeta.sourceFilePath),
+        symbol: cmpMeta.componentClassName,
+      },
       attributes: cmpMeta.properties
         .filter((prop: ComponentCompilerProperty): prop is ComponentCompilerProperty & { attribute: string } => {
           return !!prop.attribute;

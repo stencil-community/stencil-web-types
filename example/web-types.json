@@ -10,6 +10,10 @@
           "name": "my-component",
           "deprecated": false,
           "description": "A component for displaying a person's name",
+          "source": {
+            "module": "src/components/my-component/my-component.tsx",
+            "symbol": "MyComponent"
+          },
           "attributes": [
             {
               "name": "first",
@@ -45,14 +49,16 @@
             }
           ],
           "slots": [],
-          "css": {
-            "parts": []
-          }
+          "css": {}
         },
         {
           "name": "shadow-parts",
           "deprecated": false,
           "description": "An example using Shadow Parts.\n\nThe 'label' part is declared in the component-level JSDoc using \"@part NAME - DESCRIPTION\".",
+          "source": {
+            "module": "src/components/shadow-parts/shadow-parts.tsx",
+            "symbol": "ShadowParts"
+          },
           "attributes": [],
           "slots": [],
           "css": {
@@ -72,6 +78,10 @@
           "name": "slot-example",
           "deprecated": false,
           "description": "",
+          "source": {
+            "module": "src/components/slot-example/slot-example.tsx",
+            "symbol": "SlotExample"
+          },
           "attributes": [],
           "slots": [
             {
@@ -87,9 +97,7 @@
               "description": ""
             }
           ],
-          "css": {
-            "parts": []
-          }
+          "css": {}
         }
       ]
     },

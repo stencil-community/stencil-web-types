@@ -3,10 +3,13 @@ import { generateElementInfo } from './html-contributions';
 import { ElementInfo } from '../index';
 import { ComponentCompilerMeta } from '@stencil/core/internal';
 
-// TODO(NOW): Additional testing
+const MOCK_STENCIL_ROOT_DIR = '/';
+const MOCK_CLASS_COMPONENT_NAME = 'StubCmp';
+const MOCK_MODULE_PATH = 'some/stubbed/path/my-component.tsx';
+
 describe('generateElementInfo', () => {
   it('returns an empty array when no components are provided', () => {
-    expect([]).toEqual(generateElementInfo([]));
+    expect([]).toEqual(generateElementInfo([], MOCK_STENCIL_ROOT_DIR));
   });
 
   it.each(['deprecated', 'DEPRECATED', 'Deprecated'])('marks a component as deprecated', (deprecated: string) => {
@@ -23,12 +26,13 @@ describe('generateElementInfo', () => {
       name: 'my-component',
       deprecated: true,
       description: 'a simple component that shows us your name',
+      source: { module: MOCK_MODULE_PATH, symbol: MOCK_CLASS_COMPONENT_NAME },
       attributes: [],
       slots: [],
       css: {},
     };
 
-    const actual: ElementInfo[] = generateElementInfo([cmpMeta]);
+    const actual: ElementInfo[] = generateElementInfo([cmpMeta], MOCK_STENCIL_ROOT_DIR);
 
     expect(actual).toHaveLength(1);
     expect(actual[0]).toEqual(expected);
@@ -53,13 +57,14 @@ describe('generateElementInfo', () => {
         name: 'my-component',
         deprecated: false,
         description: 'a simple component that shows us your name',
+        source: { module: MOCK_MODULE_PATH, symbol: MOCK_CLASS_COMPONENT_NAME },
         attributes: [],
         slots: [],
         css: {},
       };
 
       cmpMeta.properties = [];
-      const actual: ElementInfo[] = generateElementInfo([cmpMeta]);
+      const actual: ElementInfo[] = generateElementInfo([cmpMeta], MOCK_STENCIL_ROOT_DIR);
 
       expect(actual).toHaveLength(1);
       expect(actual[0]).toEqual(expected);
@@ -97,7 +102,7 @@ describe('generateElementInfo', () => {
         },
       ];
 
-      const actual: ElementInfo[] = generateElementInfo([cmpMeta]);
+      const actual: ElementInfo[] = generateElementInfo([cmpMeta], MOCK_STENCIL_ROOT_DIR);
 
       expect(actual).toHaveLength(1);
       expect(actual[0].attributes).toHaveLength(0);
@@ -108,6 +113,7 @@ describe('generateElementInfo', () => {
         name: 'my-component',
         deprecated: false,
         description: 'a simple component that shows us your name',
+        source: { module: MOCK_MODULE_PATH, symbol: MOCK_CLASS_COMPONENT_NAME },
         attributes: [
           {
             default: 'Bob',
@@ -139,17 +145,18 @@ describe('generateElementInfo', () => {
           complexType: { original: 'string', resolved: 'string', references: {} },
         },
       ];
-      const actual: ElementInfo[] = generateElementInfo([cmpMeta]);
+      const actual: ElementInfo[] = generateElementInfo([cmpMeta], MOCK_STENCIL_ROOT_DIR);
 
       expect(actual).toHaveLength(1);
       expect(actual[0]).toEqual(expected);
     });
 
-    it.each(['deprecated', 'DEPRECATED', 'Deprecated'])('marks an attribute as deprecated', (deprecated) => {
+    it.each(['deprecated', 'DEPRECATED', 'Deprecated'])("'%s' marks an attribute as deprecated", (deprecated) => {
       const expected: ElementInfo = {
         name: 'my-component',
         deprecated: false,
         description: 'a simple component that shows us your name',
+        source: { module: MOCK_MODULE_PATH, symbol: MOCK_CLASS_COMPONENT_NAME },
         attributes: [
           {
             default: 'Bob',
@@ -181,7 +188,7 @@ describe('generateElementInfo', () => {
           complexType: { original: 'string', resolved: 'string', references: {} },
         },
       ];
-      const actual: ElementInfo[] = generateElementInfo([cmpMeta]);
+      const actual: ElementInfo[] = generateElementInfo([cmpMeta], MOCK_STENCIL_ROOT_DIR);
 
       expect(actual).toHaveLength(1);
       expect(actual[0]).toEqual(expected);
@@ -207,6 +214,7 @@ describe('generateElementInfo', () => {
         name: 'my-component',
         deprecated: true,
         description: 'a simple component that shows us your name',
+        source: { module: MOCK_MODULE_PATH, symbol: MOCK_CLASS_COMPONENT_NAME },
         attributes: [],
         slots: [],
         css: {},
@@ -218,7 +226,7 @@ describe('generateElementInfo', () => {
           text: "please don't use this",
         },
       ];
-      const actual: ElementInfo[] = generateElementInfo([cmpMeta]);
+      const actual: ElementInfo[] = generateElementInfo([cmpMeta], MOCK_STENCIL_ROOT_DIR);
 
       expect(actual).toHaveLength(1);
       expect(actual[0]).toEqual(expected);
@@ -229,6 +237,7 @@ describe('generateElementInfo', () => {
         name: 'my-component',
         deprecated: false,
         description: 'a simple component that shows us your name',
+        source: { module: MOCK_MODULE_PATH, symbol: MOCK_CLASS_COMPONENT_NAME },
         attributes: [],
         slots: [
           {
@@ -245,7 +254,7 @@ describe('generateElementInfo', () => {
           text: '- Content is placed between the named slots if provided without a slot.',
         },
       ];
-      const actual: ElementInfo[] = generateElementInfo([cmpMeta]);
+      const actual: ElementInfo[] = generateElementInfo([cmpMeta], MOCK_STENCIL_ROOT_DIR);
 
       expect(actual).toHaveLength(1);
       expect(actual[0]).toEqual(expected);
@@ -256,6 +265,7 @@ describe('generateElementInfo', () => {
         name: 'my-component',
         deprecated: false,
         description: 'a simple component that shows us your name',
+        source: { module: MOCK_MODULE_PATH, symbol: MOCK_CLASS_COMPONENT_NAME },
         attributes: [],
         slots: [
           {
@@ -272,7 +282,7 @@ describe('generateElementInfo', () => {
           text: 'primary ',
         },
       ];
-      const actual: ElementInfo[] = generateElementInfo([cmpMeta]);
+      const actual: ElementInfo[] = generateElementInfo([cmpMeta], MOCK_STENCIL_ROOT_DIR);
 
       expect(actual).toHaveLength(1);
       expect(actual[0]).toEqual(expected);
@@ -283,6 +293,7 @@ describe('generateElementInfo', () => {
         name: 'my-component',
         deprecated: false,
         description: 'a simple component that shows us your name',
+        source: { module: MOCK_MODULE_PATH, symbol: MOCK_CLASS_COMPONENT_NAME },
         attributes: [],
         slots: [
           {
@@ -299,7 +310,7 @@ describe('generateElementInfo', () => {
           text: 'secondary - Content is placed to the right of the main slotted in text',
         },
       ];
-      const actual: ElementInfo[] = generateElementInfo([cmpMeta]);
+      const actual: ElementInfo[] = generateElementInfo([cmpMeta], MOCK_STENCIL_ROOT_DIR);
 
       expect(actual).toHaveLength(1);
       expect(actual[0]).toEqual(expected);
@@ -325,6 +336,7 @@ describe('generateElementInfo', () => {
         name: 'my-component',
         deprecated: false,
         description: 'a simple component that shows us your name',
+        source: { module: MOCK_MODULE_PATH, symbol: MOCK_CLASS_COMPONENT_NAME },
         attributes: [],
         slots: [],
         css: {
@@ -346,7 +358,7 @@ describe('generateElementInfo', () => {
           text: 'another-label - Another label describing the component',
         },
       ];
-      const actual: ElementInfo[] = generateElementInfo([cmpMeta]);
+      const actual: ElementInfo[] = generateElementInfo([cmpMeta], MOCK_STENCIL_ROOT_DIR);
 
       expect(actual).toHaveLength(1);
       expect(actual[0]).toEqual(expected);
@@ -357,13 +369,14 @@ describe('generateElementInfo', () => {
         name: 'my-component',
         deprecated: false,
         description: 'a simple component that shows us your name',
+        source: { module: MOCK_MODULE_PATH, symbol: MOCK_CLASS_COMPONENT_NAME },
         attributes: [],
         slots: [],
         css: {},
       };
 
       cmpMeta.docs.tags = [];
-      const actual: ElementInfo[] = generateElementInfo([cmpMeta]);
+      const actual: ElementInfo[] = generateElementInfo([cmpMeta], MOCK_STENCIL_ROOT_DIR);
 
       expect(actual).toHaveLength(1);
       expect(actual[0]).toEqual(expected);
@@ -383,7 +396,7 @@ describe('generateElementInfo', () => {
 export const stubComponentCompilerMeta = (overrides: Partial<ComponentCompilerMeta> = {}): ComponentCompilerMeta => ({
   assetsDirs: [],
   attachInternalsMemberName: null,
-  componentClassName: 'StubCmp',
+  componentClassName: MOCK_CLASS_COMPONENT_NAME,
   dependencies: [],
   dependents: [],
   directDependencies: [],
@@ -452,7 +465,7 @@ export const stubComponentCompilerMeta = (overrides: Partial<ComponentCompilerMe
   potentialCmpRefs: [],
   properties: [],
   shadowDelegatesFocus: false,
-  sourceFilePath: '/some/stubbed/path/my-component.tsx',
+  sourceFilePath: `/${MOCK_MODULE_PATH}`,
   sourceMapPath: '/some/stubbed/path/my-component.js.map',
   states: [],
   styleDocs: [],

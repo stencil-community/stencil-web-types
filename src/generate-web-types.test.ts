@@ -3,6 +3,8 @@ import { BuildCtx } from '@stencil/core/internal';
 import { WebType } from './index';
 import { getWebTypesInfo, generateWebTypes } from './generate-web-types';
 
+const MOCK_WORKING_DIR = '/tmp/mock/dir';
+
 describe('getWebTypesInfo', () => {
   it('returns a well formed object', () => {
     const expected = {
@@ -32,7 +34,7 @@ describe('generateWebTypes', () => {
     };
 
     const buildCtx = mockBuildCtx();
-    const actual = generateWebTypes(buildCtx);
+    const actual = generateWebTypes(buildCtx, MOCK_WORKING_DIR);
 
     expect(actual).toEqual(expected);
   });
@@ -50,7 +52,7 @@ describe('generateWebTypes', () => {
     };
 
     const buildCtx = mockBuildCtx({ packageJson: {} });
-    const actual = generateWebTypes(buildCtx);
+    const actual = generateWebTypes(buildCtx, MOCK_WORKING_DIR);
 
     expect(actual).toEqual(expected);
   });

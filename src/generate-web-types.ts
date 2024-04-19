@@ -6,9 +6,10 @@ import { WebType } from './index';
 /**
  * Generate the contents of the web-types document
  * @param buildCtx the Stencil build context, which holds the build-time metadata for a project's Stencil components
+ * @param stencilRootDir the root directory of a Stencil project
  * @returns the generated web-types document contents
  */
-export const generateWebTypes = (buildCtx: BuildCtx): WebType => {
+export const generateWebTypes = (buildCtx: BuildCtx, stencilRootDir: string): WebType => {
   const { components, packageJson } = buildCtx;
   const webTypesInfo = getWebTypesInfo(
     packageJson.version ?? 'UNKNOWN_VERSION',
@@ -23,7 +24,7 @@ export const generateWebTypes = (buildCtx: BuildCtx): WebType => {
       html: {
         // these are symbol kind names.
         // the full list can be found here: https://plugins.jetbrains.com/docs/intellij/websymbols-web-types.html#direct-support
-        elements: generateElementInfo(components),
+        elements: generateElementInfo(components, stencilRootDir),
       },
       js: {
         events: generateJsEvents(components),
