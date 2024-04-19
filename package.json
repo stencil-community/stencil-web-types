@@ -12,8 +12,10 @@
     "build": "tsc -p .",
     "clean": "rm -rf dist",
     "prettier": "npm run prettier.base -- --write",
-    "prettier.base": "prettier --cache \"./src/**/*.ts\" \"renovate.json5\"",
+    "prettier.base": "prettier --cache \"./src/**/*.ts\" \".release-it.json\" \"renovate.json5\"",
     "prettier.dry-run": "npm run prettier.base -- --list-different",
+    "release": "release-it",
+    "release.dry-run": "release-it --dry-run",
     "test": "vitest",
     "test.coverage": "vitest --coverage"
   },
@@ -21,9 +23,11 @@
   "license": "MIT",
   "devDependencies": {
     "@ionic/prettier-config": "^4.0.0",
+    "@release-it/conventional-changelog": "^8.0.1",
     "@stencil/core": "^4.13.0",
     "@vitest/coverage-v8": "^1.5.0",
     "prettier": "3.2.4",
+    "release-it": "^17.2.0",
     "typescript": "^5.4.3",
     "vitest": "^1.4.0"
   },
