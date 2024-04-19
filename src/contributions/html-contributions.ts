@@ -13,10 +13,10 @@ import { JsonDocsPart } from '@stencil/core/internal/stencil-public-docs';
 // https://github.com/JetBrains/web-types/blob/2c07137416e4151bfaf44bf3226dca7f1a5e9bd3/schema/web-types.json#L922
 /**
  * Generate an array of symbol contributions to the HTML namespace
- * @param compnentMetadata the Stencil component metadata to generate info for to contribute to the HTML namespace
+ * @param componentMetadata the Stencil component metadata to generate info for to contribute to the HTML namespace
  */
-export const generateElementInfo = (compnentMetadata: ComponentCompilerMeta[]): ElementInfo[] => {
-  return compnentMetadata.map((cmpMeta: ComponentCompilerMeta): ElementInfo => {
+export const generateElementInfo = (componentMetadata: ComponentCompilerMeta[]): ElementInfo[] => {
+  return componentMetadata.map((cmpMeta: ComponentCompilerMeta): ElementInfo => {
     // avoid serializing parts for css contributions for an element if we can avoid it
     let cssParts: CssPart[] | undefined = getDocsParts(cmpMeta.htmlParts, cmpMeta.docs.tags).map((parts) => {
       return { name: parts.name, description: parts.docs };
