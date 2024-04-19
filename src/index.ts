@@ -58,6 +58,13 @@ export type ElementInfo = {
    * Slots are detected using the `@slot` JSDoc tag on a Stencil component's class JSDoc.
    */
   slots: SlotInfo[];
+  css: {
+    /**
+     * All shadow parts associated with the component.
+     * Shadow parts are detected using the `@part` JSDoc tag on a Stencil component's class JSDoc.
+     */
+    parts?: CssPart[];
+  };
 };
 
 type AttributeInfo = {
@@ -79,6 +86,20 @@ export type SlotInfo = {
   name: string;
   /**
    * A string of text explaining the purpose/usage of the slot
+   */
+  description: string;
+};
+
+/**
+ * Describes a CSS Shadow Part in a Stencil component
+ */
+export type CssPart = {
+  /**
+   * The name of the part.
+   */
+  name: string;
+  /**
+   * A string of text explaining the purpose/usage of the part.
    */
   description: string;
 };

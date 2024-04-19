@@ -7,6 +7,19 @@
 
     <script type="module" src="/build/example.esm.js"></script>
     <script nomodule src="/build/example.js"></script>
+
+    <!-- See the repo's README for setup instructions -->
+    <!-- Corresponds to the shadow-parts element in the body of the document below  -->
+    <!-- After setup, hover over the shadow part name to see its description. -->
+    <!-- After setup, autocomplete for the shadow part names will also work. Try deleting 'first-msg' below and retyping it -->
+    <style>
+      shadow-parts::part(first-msg) {
+        background: aqua;
+      }
+      shadow-parts::part(second-msg) {
+        background: lightgreen;
+      }
+    </style>
   </head>
   <body>
     <!-- See the repo's README for setup instructions -->
@@ -31,5 +44,11 @@
       <div slot="primary">Primary Content</div>
       <div slot="secondary">Secondary Content</div>
     </slot-example>
+
+    <br/>
+
+    <!-- Demonstrates how shadow parts work. See the style tag in the document's head -->
+    <h2>CSS Shadow Part Example (&lt;shadow-parts&gt;)</h2>
+    <shadow-parts></shadow-parts>
   </body>
 </html>

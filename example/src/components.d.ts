@@ -28,6 +28,12 @@ export namespace Components {
          */
         "suffix": string;
     }
+    /**
+     * An example using Shadow Parts.
+     * The 'label' part is declared in the component-level JSDoc using "@part NAME - DESCRIPTION".
+     */
+    interface ShadowParts {
+    }
     interface SlotExample {
     }
 }
@@ -41,6 +47,16 @@ declare global {
         prototype: HTMLMyComponentElement;
         new (): HTMLMyComponentElement;
     };
+    /**
+     * An example using Shadow Parts.
+     * The 'label' part is declared in the component-level JSDoc using "@part NAME - DESCRIPTION".
+     */
+    interface HTMLShadowPartsElement extends Components.ShadowParts, HTMLStencilElement {
+    }
+    var HTMLShadowPartsElement: {
+        prototype: HTMLShadowPartsElement;
+        new (): HTMLShadowPartsElement;
+    };
     interface HTMLSlotExampleElement extends Components.SlotExample, HTMLStencilElement {
     }
     var HTMLSlotExampleElement: {
@@ -49,6 +65,7 @@ declare global {
     };
     interface HTMLElementTagNameMap {
         "my-component": HTMLMyComponentElement;
+        "shadow-parts": HTMLShadowPartsElement;
         "slot-example": HTMLSlotExampleElement;
     }
 }
@@ -75,10 +92,17 @@ declare namespace LocalJSX {
          */
         "suffix"?: string;
     }
+    /**
+     * An example using Shadow Parts.
+     * The 'label' part is declared in the component-level JSDoc using "@part NAME - DESCRIPTION".
+     */
+    interface ShadowParts {
+    }
     interface SlotExample {
     }
     interface IntrinsicElements {
         "my-component": MyComponent;
+        "shadow-parts": ShadowParts;
         "slot-example": SlotExample;
     }
 }
@@ -90,6 +114,11 @@ declare module "@stencil/core" {
              * A component for displaying a person's name
              */
             "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
+            /**
+             * An example using Shadow Parts.
+             * The 'label' part is declared in the component-level JSDoc using "@part NAME - DESCRIPTION".
+             */
+            "shadow-parts": LocalJSX.ShadowParts & JSXBase.HTMLAttributes<HTMLShadowPartsElement>;
             "slot-example": LocalJSX.SlotExample & JSXBase.HTMLAttributes<HTMLSlotExampleElement>;
         }
     }

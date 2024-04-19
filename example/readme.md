@@ -7,7 +7,7 @@ This project demonstrates the usage of the `@stencil-community/web-types-output-
 ## Set Up
 
 To set up this project, you may either first build the output target from source, or override this project's dependency on `@stencil-community/web-types-output-target` with a version published to the NPM registry.
-Both allow you to take the output target for a 'test drive' - the only difference is the former allows you to tweak the output target's source code and see how it affects the example project.
+Both allow you to take the output target for a 'test drive' - however, the former will allow you to try out potentially unreleased functionality.
 
 After setting up the dependencies, continue to the next section.
 
