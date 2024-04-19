@@ -12,7 +12,7 @@
     "build": "tsc -p .",
     "clean": "rm -rf dist",
     "prettier": "npm run prettier.base -- --write",
-    "prettier.base": "prettier --cache \"./src/**/*.ts\"",
+    "prettier.base": "prettier --cache \"./src/**/*.ts\" \"renovate.json5\"",
     "prettier.dry-run": "npm run prettier.base -- --list-different",
     "test": "vitest",
     "test.coverage": "vitest --coverage"
