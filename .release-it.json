@@ -1,0 +1,21 @@
+{
+  "git": {
+    "commitMessage": "Release ${version}"
+  },
+  "github": {
+    "release": true
+  },
+  "hooks": {
+    "before:init": ["npm run prettier", "npm run build", "npm t -- --no-watch"]
+  },
+  "npm": { "publishArgs": ["--access public", "--provenance"] },
+  "plugins": {
+    "@release-it/conventional-changelog": {
+      "header": "# Changelog",
+      "infile": "CHANGELOG.md",
+      "preset": {
+        "name": "angular"
+      }
+    }
+  }
+}
