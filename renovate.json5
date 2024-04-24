@@ -35,6 +35,10 @@
       matchPackageNames: ['@types/node'],
       allowedVersions: '<21.0.0',
     },
+    {
+      matchPackagePrefixes: ['@vitest', 'vitest'],
+      groupName: 'Vitest',
+    }
   ],
   // Never rebase the branch or update it unless manually requested to avoid noisy PR emails
   rebaseWhen: 'never',
