@@ -38,7 +38,7 @@
     {
       matchPackagePrefixes: ['@vitest', 'vitest'],
       groupName: 'Vitest',
-    }
+    },
   ],
   // Never rebase the branch or update it unless manually requested to avoid noisy PR emails
   rebaseWhen: 'never',
