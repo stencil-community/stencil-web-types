@@ -1,5 +1,22 @@
 # Stencil Web-Types Output Target
 
+<p align="center">
+  <a href="https://www.npmjs.com/package/@stencil-community/web-types-output-target">
+    <img src="https://img.shields.io/npm/v/@stencil-community/web-types-output-target.svg" alt="The npm package version" /></a>
+  <a href="https://github.com/ionic-team/stencil/blob/main/LICENSE.md">
+    <img src="https://img.shields.io/badge/license-MIT-yellow.svg" alt="Released under the MIT license." />
+  </a>
+  <a href="https://github.com/stencil-community/stencil-web-types/blob/main/CONTRIBUTING.md">
+    <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" alt="PRs welcome!" />
+  </a>
+  <a href="https://twitter.com/stenciljs">
+    <img src="https://img.shields.io/badge/follow-%40stenciljs-1DA1F2?logo=twitter" alt="Follow @stenciljs">
+  </a>
+  <a href="https://chat.stenciljs.com">
+    <img src="https://img.shields.io/discord/520266681499779082?color=7289DA&label=%23stencil&logo=discord&logoColor=white" alt="Official Ionic Discord" />
+  </a>
+</p>
+
 A Stencil output target for generating [web-types](https://plugins.jetbrains.com/docs/intellij/websymbols-web-types.html#file-structure) to provide intellisense for Stencil components for HTML files.
 
 > [!NOTE]
