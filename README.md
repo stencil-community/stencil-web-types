@@ -59,7 +59,25 @@ export const config: Config = {
 
 Stencil will write a `web-types.json` to your project's root directory the next time the Stencil [build task](https://stenciljs.com/docs/cli#stencil-build) is run.
 
-## Usage
+## Configuration
+
+The `webTypesOutputTarget` output target takes an optional argument, an object literal to configure the output target.
+The following are properties on that configuration object.
+
+### `outFile`
+
+Defaults to `StencilConfig#{rootDir}/web-types.json`.
+
+Since v0.3.0.
+
+Description: A string that represents the directory to place the output file.
+Users may specify either a directory (e.g. '../'), a filename (e.g. 'my-types.json') or both (e.g. '../my-types.json').
+If no filename ending is '.json' is provided, the output target assumes that a filename must be added to the path.
+In such cases, the default 'web-types.json' will be added to the path.
+
+It is not recommended that users use absolute paths for this setting, as this can cause errors in projects shared by more than one developer.
+
+## Using Web Types
 
 Once web types have been written to disk, they need to be picked up by the IDE.
 Web types for your project can be picked by JetBrains IDEs by setting the `web-types` property at the root level of your project's `package.json` file:
