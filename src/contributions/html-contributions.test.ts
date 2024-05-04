@@ -2,10 +2,11 @@ import { beforeEach, describe, expect, it } from 'vitest';
 import { generateElementInfo } from './html-contributions';
 import { ElementInfo } from '../index';
 import { ComponentCompilerMeta } from '@stencil/core/internal';
+import { join } from 'node:path';
 
 const MOCK_STENCIL_ROOT_DIR = '/';
 const MOCK_CLASS_COMPONENT_NAME = 'StubCmp';
-const MOCK_MODULE_PATH = 'some/stubbed/path/my-component.tsx';
+const MOCK_MODULE_PATH = join('some', 'stubbed', 'path', 'my-component.tsx');
 
 describe('generateElementInfo', () => {
   it('returns an empty array when no components are provided', () => {
