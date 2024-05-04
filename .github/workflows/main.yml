@@ -24,3 +24,25 @@ jobs:
         run: npm run build
       - name: Run Tests
         run: npm test -- --no-watch
+
+      # Verify that the Example Project Builds
+      - name: Install Example Project Dependencies
+        working-directory: './example'
+        run: npm ci
+
+      - name: Build Example Project
+        working-directory: './example'
+        run: npm run build
+
+      - name: Verify No Files Have Changed
+        working-directory: './example'
+        # here we check that there are no changed / new files.
+        # we use `git status` and check if there are more than 0 lines in the output.
+        run: |
+          if [[ $(git status --short | wc -l) -ne 0 ]]; then
+            STATUS=$(git status --verbose); 
+            printf "%s" "$STATUS";
+            git diff | cat;
+            exit 1;
+          fi
+        shell: bash
