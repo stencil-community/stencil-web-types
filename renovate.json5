@@ -39,9 +39,15 @@
       matchPackagePrefixes: ['@vitest', 'vitest'],
       groupName: 'Vitest',
     },
+    {
+      // auto-merge anything that's not a major version bump
+      matchUpdateTypes: ['minor', 'patch', 'pin', 'digest'],
+      automerge: true,
+      automergeStrategy: 'rebase',
+    },
   ],
-  // Never rebase the branch or update it unless manually requested to avoid noisy PR emails
-  rebaseWhen: 'never',
+  // Rebase the branch to avoid a 'stalled' dependency update due to it falling behind
+  rebaseWhen: 'behind-base-branch',
   /**
    * Run every Monday and Thursday between midnight at 11 AM (in UTC)
    *
