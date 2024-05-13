@@ -1,6 +1,16 @@
-import type { BuildCtx, CompilerCtx, OutputTargetCustom, Config } from '@stencil/core/internal';
+import type { BuildCtx, CompilerCtx, OutputTargetCustom, Config, Diagnostic } from '@stencil/core/internal';
 import { generateWebTypes } from './generate-web-types.js';
-import { Diagnostic } from '@stencil/core/internal/stencil-public-compiler';
+import { extname, isAbsolute, join, sep } from 'path';
+
+/**
+ * A representation of the configuration object that this output target accepts at compile time
+ */
+export type WebTypesConfig = {
+  /**
+   * The output location of the generated JSON file.
+   */
+  outFile?: string;
+};
 
 /**
  * A Stencil output target for generating [web-types](https://github.com/JetBrains/web-types) for a Stencil project.
@@ -16,16 +26,25 @@ import { Diagnostic } from '@stencil/core/internal/stencil-public-compiler';
  *
  * For more information on using this output target, please see the project's README file.
  */
-export const webTypesOutputTarget = (): OutputTargetCustom => ({
+export const webTypesOutputTarget = (outputTargetConfig: WebTypesConfig = {}): OutputTargetCustom => ({
   type: 'custom',
   name: 'web-types-output-target',
-  validate(config: Config, _diagnostics: Diagnostic[]) {
+  validate(config: Config, _diagnostics: Diagnostic[]): void {
     if (typeof config.rootDir === 'undefined') {
       // defer to Stencil to create & load ths into its diagnostics, rather than us having to generate one ourselves
       throw new Error('Unable to determine the Stencil root directory. Exiting without generating web types.');
     }
+
+    if (!outputTargetConfig.outFile) {
+      outputTargetConfig.outFile = 'web-types.json';
+    } else if (extname(outputTargetConfig.outFile) !== '.json') {
+      outputTargetConfig.outFile = join(outputTargetConfig.outFile, 'web-types.json');
+    }
+    if (!isAbsolute(outputTargetConfig.outFile)) {
+      outputTargetConfig.outFile = join(config.rootDir, outputTargetConfig.outFile);
+    }
   },
-  async generator(config: Config, compilerCtx: CompilerCtx, buildCtx: BuildCtx) {
+  async generator(config: Config, compilerCtx: CompilerCtx, buildCtx: BuildCtx): Promise<void> {
     const timespan = buildCtx.createTimeSpan('generate web-types started', true);
 
     /**
@@ -37,7 +56,7 @@ export const webTypesOutputTarget = (): OutputTargetCustom => ({
     const stencilRootDirectory = config.rootDir!;
     const webTypes = generateWebTypes(buildCtx, stencilRootDirectory);
 
-    await compilerCtx.fs.writeFile('web-types.json', JSON.stringify(webTypes, null, 2));
+    await compilerCtx.fs.writeFile(outputTargetConfig.outFile!, JSON.stringify(webTypes, null, 2));
 
     timespan.finish('generate web-types finished');
   },
