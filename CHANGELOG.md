@@ -1,5 +1,12 @@
 # Changelog
 
+# [0.3.0](https://github.com/stencil-community/stencil-web-types/compare/v0.2.0...v0.3.0) (2024-05-14)
+
+
+### Features
+
+* **config:** allow out file to be configurable ([#36](https://github.com/stencil-community/stencil-web-types/issues/36)) ([b555dc2](https://github.com/stencil-community/stencil-web-types/commit/b555dc27a3d367b29cae8716aa73135de0d4d57c))
+
 # [0.2.0](https://github.com/stencil-community/stencil-web-types/compare/v0.1.0...v0.2.0) (2024-05-06)
 
 
