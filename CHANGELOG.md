@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.1](https://github.com/stencil-community/stencil-web-types/compare/v0.3.0...v0.3.1) (2024-05-20)
+
+
+### Performance Improvements
+
+* **bundle:** remove unneeded  type declarations ([#43](https://github.com/stencil-community/stencil-web-types/issues/43)) ([8677b52](https://github.com/stencil-community/stencil-web-types/commit/8677b5266be99eb972cf9991838f10ac3ad8b071))
+
 # [0.3.0](https://github.com/stencil-community/stencil-web-types/compare/v0.2.0...v0.3.0) (2024-05-14)
 
 
