@@ -40,7 +40,11 @@ export const webTypesOutputTarget = (outputTargetConfig: WebTypesConfig = {}): O
     } else if (extname(outputTargetConfig.outFile) !== '.json') {
       outputTargetConfig.outFile = join(outputTargetConfig.outFile, 'web-types.json');
     }
-    if (!isAbsolute(outputTargetConfig.outFile)) {
+    if (isAbsolute(outputTargetConfig.outFile)) {
+      console.warn(
+        `webTypesOutputTarget - 'outFile' config value appears to be absolute: '${outputTargetConfig.outFile}'. Using relative files is discouraged. See https://github.com/stencil-community/stencil-web-types?tab=readme-ov-file#outfile for information on configuring this field.`,
+      );
+    } else {
       outputTargetConfig.outFile = join(config.rootDir, outputTargetConfig.outFile);
     }
   },

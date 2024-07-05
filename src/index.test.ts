@@ -1,4 +1,4 @@
-import { describe, expect, it } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, MockInstance, vi } from 'vitest';
 import { type WebTypesConfig, webTypesOutputTarget } from './index.js';
 import { type Config } from '@stencil/core/internal';
 import { join, normalize } from 'path';
@@ -7,6 +7,17 @@ describe('webTypesOutputTarget', () => {
   describe('validate', () => {
     describe('WebTypesConfig field validation', () => {
       describe('outFile', () => {
+        let consoleWarnSpy: MockInstance<Parameters<typeof console.warn>, ReturnType<typeof console.warn>>;
+
+        beforeEach(() => {
+          consoleWarnSpy = vi.spyOn(console, 'warn');
+          consoleWarnSpy.mockImplementation(() => null);
+        });
+
+        afterEach(() => {
+          vi.restoreAllMocks();
+        });
+
         it.each([normalize('/user/defined/directory/web-types.json'), normalize('/user/defined/directory/types.json')])(
           "does not override a user-provided, absolute path, '%s'",
           (expectedDir) => {
@@ -15,6 +26,20 @@ describe('webTypesOutputTarget', () => {
             webTypesOutputTarget(outputTargetConfig).validate!({ rootDir: '' }, []);
 
             expect(outputTargetConfig.outFile).toBe(expectedDir);
+          },
+        );
+
+        it.each([normalize('/user/defined/directory/web-types.json'), normalize('/user/defined/directory/types.json')])(
+          "logs an error for an absolute path, '%s'",
+          (expectedDir) => {
+            const outputTargetConfig: WebTypesConfig = { outFile: expectedDir };
+
+            webTypesOutputTarget(outputTargetConfig).validate!({ rootDir: '' }, []);
+
+            expect(consoleWarnSpy).toHaveBeenCalledTimes(1);
+            expect(consoleWarnSpy).toHaveBeenCalledWith(
+              `webTypesOutputTarget - 'outFile' config value appears to be absolute: '${expectedDir}'. Using relative files is discouraged. See https://github.com/stencil-community/stencil-web-types?tab=readme-ov-file#outfile for information on configuring this field.`,
+            );
           },
         );
 
