@@ -1,5 +1,12 @@
 # Changelog
 
+# [0.4.0](https://github.com/stencil-community/stencil-web-types/compare/v0.3.1...v0.4.0) (2024-07-05)
+
+
+### Features
+
+* **config:** add warning for absolute outFile ([#66](https://github.com/stencil-community/stencil-web-types/issues/66)) ([4b59f43](https://github.com/stencil-community/stencil-web-types/commit/4b59f434f6befa7a0ad20f832aca80cf1da1527a))
+
 ## [0.3.1](https://github.com/stencil-community/stencil-web-types/compare/v0.3.0...v0.3.1) (2024-05-20)
 
 
