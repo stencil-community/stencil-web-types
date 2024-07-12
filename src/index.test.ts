@@ -7,7 +7,7 @@ describe('webTypesOutputTarget', () => {
   describe('validate', () => {
     describe('WebTypesConfig field validation', () => {
       describe('outFile', () => {
-        let consoleWarnSpy: MockInstance<Parameters<typeof console.warn>, ReturnType<typeof console.warn>>;
+        let consoleWarnSpy: MockInstance<typeof console.warn>;
 
         beforeEach(() => {
           consoleWarnSpy = vi.spyOn(console, 'warn');
