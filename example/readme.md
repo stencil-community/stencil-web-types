@@ -2,12 +2,12 @@
 
 # `@stencil-community/web-types-output-target` Example Project
 
-This project demonstrates the usage of the `@stencil-community/web-types-output-target` output target.
+This project demonstrates the usage of the `@stencil-community/web-types-output-target` output target to get Intellisense in HTML and Vue files.
 
 ## Set Up
 
-To set up this project, you may either first build the output target from source, or override this project's dependency on `@stencil-community/web-types-output-target` with a version published to the NPM registry.
-Both allow you to take the output target for a 'test drive' - however, the former will allow you to try out potentially unreleased functionality.
+To set up this project, you must either first build the output target from source, or override this project's dependency on `@stencil-community/web-types-output-target` with a version published to the NPM registry.
+Both allow you to take the output target for a 'test drive' - however, the former will allow you to try out any unreleased functionality.
 
 After setting up the dependencies, continue to the next section.
 
@@ -33,5 +33,5 @@ To build the project, run the following from this directory:
 $ npm run build
 ```
 
-Upon build, open the [example index.html file](./src/index.html) in your JetBrains IDE.
+Upon build, open the [example index.html file](./src/index.html) or [example Vue file](./src/example.vue) in your JetBrains IDE.
 Hover over components to see how JSDoc descriptions, deprecation tags, default and required values, etc. are now populated in the editor.
