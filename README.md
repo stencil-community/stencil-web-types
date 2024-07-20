@@ -28,14 +28,10 @@ A Stencil output target for generating [web types](https://plugins.jetbrains.com
 One of the core features of web components is the ability to create [custom elements](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements).
 When Stencil compiles a project, it generates a custom element for each component in the project.
 
-By default, integrated development environments (IDEs) like JetBrains' WebStorm are not aware of a project's custom elements.
-This causes the IDE to often warn developers that it doesn't have any information about their custom elements, and results in a poorer development experience.
-In order to enable more intelligent features in JetBrains products, such as auto-completion, hover tooltips, etc., developers need to inform it of their project's custom elements.
+By default, integrated development environments (IDEs) like JetBrains' WebStorm are not aware of a project's custom elements, resulting in a poorer development experience.
 
-The `webTypesOutputTarget` output target tells Stencil to generate a JSON file containing this information.
-
-This is an opt-in feature and will write a JSON file containing web types in a directory specified by the output target.
-Once the feature is enabled and your IDE is informed of the JSON file's location, writing code in HTML and Vue files will have similar intellisense to that of TSX files:
+The `webTypesOutputTarget` output target tells Stencil to generate a JSON file that enables auto-completion, hover tooltips, etc., for a project's custom elements in HTML and Vue files.
+Once the feature is enabled and your IDE is informed of the JSON file's location, web components in HTML and Vue files will have similar Intellisense to that of TSX files:
 
 <div align="center">
     <img src="./images/demo.gif" alt="JetBrains' IntelliJ providing Stencil web component documentation in an HTML file"/>
