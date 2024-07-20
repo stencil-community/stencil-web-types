@@ -17,7 +17,7 @@
   </a>
 </p>
 
-A Stencil output target for generating [web types](https://plugins.jetbrains.com/docs/intellij/websymbols-web-types.html#file-structure) to provide intellisense for Stencil components in HTML files.
+A Stencil output target for generating [web types](https://plugins.jetbrains.com/docs/intellij/websymbols-web-types.html#file-structure) to provide intellisense for Stencil components in HTML and Vue files.
 
 > [!NOTE]
 > This package follows [semantic versioning](https://semver.org).
@@ -25,21 +25,21 @@ A Stencil output target for generating [web types](https://plugins.jetbrains.com
 
 ## Overview
 
-One of the core features of web components is the ability to create [custom elements](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements), which allow developers to reuse custom functionality defined by their components.
+One of the core features of web components is the ability to create [custom elements](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements).
 When Stencil compiles a project, it generates a custom element for each component in the project.
 
 By default, integrated development environments (IDEs) like JetBrains' WebStorm are not aware of a project's custom elements.
-This causes the IDE to often warn developers that it doesn't have any information about their custom elements, and results in a poorer developement experience.
+This causes the IDE to often warn developers that it doesn't have any information about their custom elements, and results in a poorer development experience.
 In order to enable more intelligent features in JetBrains products, such as auto-completion, hover tooltips, etc., developers need to inform it of their project's custom elements.
 
 The `webTypesOutputTarget` output target tells Stencil to generate a JSON file containing this information.
 
 This is an opt-in feature and will write a JSON file containing web types in a directory specified by the output target.
-Once the feature is enabled and your IDE is informed of the JSON file's location, writing code in HTML files will have similar intellisense to that of TSX files.
+Once the feature is enabled and your IDE is informed of the JSON file's location, writing code in HTML and Vue files will have similar intellisense to that of TSX files.
 
 ## Set Up
 
-The output target is not built in to Stencil itself.
+The output target is not built into Stencil itself.
 It's a third party package, that needs to be installed as a dev-dependency:
 ```bash
 $ npm i --save-dev @stencil-community/web-types-output-target
