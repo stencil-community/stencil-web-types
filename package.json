@@ -1,6 +1,6 @@
 {
   "name": "@stencil-community/web-types-output-target",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "description": "an experimental stencil output target supporting web-types",
   "main": "dist/index.js",
   "files": [
