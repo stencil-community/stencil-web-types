@@ -19,10 +19,6 @@
 
 A Stencil output target for generating [web types](https://plugins.jetbrains.com/docs/intellij/websymbols-web-types.html#file-structure) to provide intellisense for Stencil components in HTML and Vue files.
 
-> [!NOTE]
-> This package follows [semantic versioning](https://semver.org).
-> Small breaking changes to the API may occur prior to hitting v1.0.
-
 ## Overview
 
 One of the core features of web components is the ability to create [custom elements](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements).
