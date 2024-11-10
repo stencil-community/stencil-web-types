@@ -36,8 +36,8 @@
       allowedVersions: '<21.0.0',
     },
     {
-      matchPackagePrefixes: ['@vitest', 'vitest'],
       groupName: 'Vitest',
+      matchPackageNames: ['@vitest{/,}**', 'vitest{/,}**'],
     },
     {
       // auto-merge anything that's not a major version bump
