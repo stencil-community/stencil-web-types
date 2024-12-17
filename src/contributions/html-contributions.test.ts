@@ -86,6 +86,8 @@ describe('generateElementInfo', () => {
           optional: false,
           type: 'string',
           complexType: { original: 'string', resolved: 'string', references: {} },
+          getter: false,
+          setter: false,
         },
         {
           attribute: '',
@@ -100,6 +102,8 @@ describe('generateElementInfo', () => {
           optional: false,
           type: 'string',
           complexType: { original: 'string', resolved: 'string', references: {} },
+          getter: false,
+          setter: false,
         },
       ];
 
@@ -144,6 +148,8 @@ describe('generateElementInfo', () => {
           optional: false,
           type: 'string',
           complexType: { original: 'string', resolved: 'string', references: {} },
+          getter: false,
+          setter: false,
         },
       ];
       const actual: ElementInfo[] = generateElementInfo([cmpMeta], MOCK_STENCIL_ROOT_DIR);
@@ -187,6 +193,8 @@ describe('generateElementInfo', () => {
           optional: false,
           type: 'string',
           complexType: { original: 'string', resolved: 'string', references: {} },
+          getter: false,
+          setter: false,
         },
       ];
       const actual: ElementInfo[] = generateElementInfo([cmpMeta], MOCK_STENCIL_ROOT_DIR);
