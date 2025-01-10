@@ -40,6 +40,10 @@
       matchPackageNames: ['@vitest{/,}**', 'vitest{/,}**'],
     },
     {
+      groupName: 'Release It',
+      matchPackageNames: ['release-it', '@release-it/*'],
+    },
+    {
       // auto-merge anything that's not a major version bump
       matchUpdateTypes: ['minor', 'patch', 'pin', 'digest'],
       automerge: true,
