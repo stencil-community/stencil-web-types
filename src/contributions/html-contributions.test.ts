@@ -437,6 +437,7 @@ export const stubComponentCompilerMeta = (overrides: Partial<ComponentCompilerMe
   hasListenerTargetDocument: false,
   hasListenerTargetParent: false,
   hasListenerTargetWindow: false,
+  hasModernPropertyDecls: false,
   hasMember: false,
   hasMethod: false,
   hasMode: false,
