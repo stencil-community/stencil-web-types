@@ -41,7 +41,7 @@
     },
     {
       groupName: 'Release It',
-      matchPackageNames: ['release-it', '@release-it/*'],
+      matchPackageNames: ['release-it', '@release-it**/*'],
     },
     {
       // auto-merge anything that's not a major version bump
