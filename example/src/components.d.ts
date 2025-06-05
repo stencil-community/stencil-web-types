@@ -20,6 +20,7 @@ export namespace Components {
         "last": string;
         /**
           * The middle name, defaults to "Unknown"
+          * @default "Unknown"
          */
         "middle": string;
         /**
@@ -84,6 +85,7 @@ declare namespace LocalJSX {
         "last"?: string;
         /**
           * The middle name, defaults to "Unknown"
+          * @default "Unknown"
          */
         "middle"?: string;
         /**
