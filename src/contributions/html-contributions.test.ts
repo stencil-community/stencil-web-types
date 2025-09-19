@@ -411,6 +411,7 @@ export const stubComponentCompilerMeta = (overrides: Partial<ComponentCompilerMe
   directDependencies: [],
   directDependents: [],
   docs: { text: 'docs', tags: [] },
+  doesExtend: false,
   elementRef: '',
   encapsulation: 'none',
   events: [],
