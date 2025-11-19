@@ -32,8 +32,9 @@
    */
   packageRules: [
     {
-      matchPackageNames: ['@types/node'],
-      allowedVersions: '<21.0.0',
+      groupName: 'Node',
+      matchPackageNames: ['@types/node', 'node'],
+      allowedVersions: '<23.0.0',
     },
     {
       groupName: 'Vitest',
