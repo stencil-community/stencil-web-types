@@ -1,5 +1,5 @@
 {
-  "exclude": ["dist", "example"],
+  "exclude": ["dist", "example", "vitest.config.ts"],
   "compilerOptions": {
     /* Visit https://aka.ms/tsconfig to read more about this file */
 
