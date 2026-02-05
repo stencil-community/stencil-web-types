@@ -404,6 +404,7 @@ describe('generateElementInfo', () => {
  */
 export const stubComponentCompilerMeta = (overrides: Partial<ComponentCompilerMeta> = {}): ComponentCompilerMeta => ({
   assetsDirs: [],
+  attachInternalsCustomStates: [],
   attachInternalsMemberName: null,
   componentClassName: MOCK_CLASS_COMPONENT_NAME,
   dependencies: [],

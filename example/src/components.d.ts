@@ -71,6 +71,8 @@ declare global {
     }
 }
 declare namespace LocalJSX {
+    type OneOf<K extends string, T> = { [P in K]: T } | { [P in `attr:${K}`]: T } | { [P in `prop:${K}`]: T };
+
     /**
      * A component for displaying a person's name
      */
@@ -102,8 +104,16 @@ declare namespace LocalJSX {
     }
     interface SlotExample {
     }
+
+    interface MyComponentAttributes {
+        "first": string;
+        "middle": string;
+        "last": string;
+        "suffix": string;
+    }
+
     interface IntrinsicElements {
-        "my-component": MyComponent;
+        "my-component": Omit<MyComponent, keyof MyComponentAttributes> & { [K in keyof MyComponent & keyof MyComponentAttributes]?: MyComponent[K] } & { [K in keyof MyComponent & keyof MyComponentAttributes as `attr:${K}`]?: MyComponentAttributes[K] } & { [K in keyof MyComponent & keyof MyComponentAttributes as `prop:${K}`]?: MyComponent[K] } & OneOf<"first", MyComponent["first"]>;
         "shadow-parts": ShadowParts;
         "slot-example": SlotExample;
     }
@@ -115,13 +125,13 @@ declare module "@stencil/core" {
             /**
              * A component for displaying a person's name
              */
-            "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
+            "my-component": LocalJSX.IntrinsicElements["my-component"] & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
             /**
              * An example using Shadow Parts.
              * The 'label' part is declared in the component-level JSDoc using "@part NAME - DESCRIPTION".
              */
-            "shadow-parts": LocalJSX.ShadowParts & JSXBase.HTMLAttributes<HTMLShadowPartsElement>;
-            "slot-example": LocalJSX.SlotExample & JSXBase.HTMLAttributes<HTMLSlotExampleElement>;
+            "shadow-parts": LocalJSX.IntrinsicElements["shadow-parts"] & JSXBase.HTMLAttributes<HTMLShadowPartsElement>;
+            "slot-example": LocalJSX.IntrinsicElements["slot-example"] & JSXBase.HTMLAttributes<HTMLSlotExampleElement>;
         }
     }
 }
