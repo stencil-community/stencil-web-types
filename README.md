@@ -99,4 +99,4 @@ To provide these IDE-specific typings to users of your library, be sure to inclu
 
 ## References
 
-https://plugins.jetbrains.com/docs/intellij/websymbols-web-types.html#file-structure
+- [JetBrains' Web Types Reference](https://plugins.jetbrains.com/docs/intellij/polysymbols-web-types.html)
