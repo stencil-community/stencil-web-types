@@ -8,7 +8,11 @@
   "hooks": {
     "before:init": ["npm run prettier", "npm run build", "npm t -- --no-watch"]
   },
-  "npm": { "publishArgs": ["--access public"] },
+  "npm": {
+    "publishArgs": ["--access public"],
+    "//": "required per https://github.com/release-it/release-it/blob/aa30853747fc926495525bf3216688071827f38e/docs/npm.md?plain=1#L185",
+    "skipChecks": true
+  },
   "plugins": {
     "@release-it/conventional-changelog": {
       "header": "# Changelog",
