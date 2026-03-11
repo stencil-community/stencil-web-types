@@ -9,7 +9,7 @@
     "before:init": ["npm run prettier", "npm run build", "npm t -- --no-watch"]
   },
   "npm": {
-    "publishArgs": ["--access public"],
+    "publishArgs": ["--access public", "--provenance"],
     "skipChecks": true
   },
   "plugins": {
