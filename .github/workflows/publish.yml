@@ -28,6 +28,6 @@ jobs:
       - name: Install dependencies
         run: npm ci
       - name: Publish to npm
-        run: release-it --ci --dry-run
+        run: npx release-it --ci --dry-run
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
