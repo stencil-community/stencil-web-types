@@ -16,8 +16,8 @@
     "prettier": "npm run prettier.base -- --write",
     "prettier.base": "prettier --cache \"./src/**/*.ts\" \".release-it.json\" \"renovate.json5\"",
     "prettier.dry-run": "npm run prettier.base -- --list-different",
-    "release": "release-it",
-    "release.dry-run": "release-it --dry-run",
+    "release": "NODE_AUTH_TOKEN=\"\" release-it",
+    "release.dry-run": "NODE_AUTH_TOKEN=\"\" release-it --dry-run",
     "test": "vitest",
     "test.coverage": "vitest --coverage"
   },
