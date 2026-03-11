@@ -28,6 +28,6 @@ jobs:
       - name: Install dependencies
         run: npm ci
       - name: Publish to npm
-        run: npm run release -- --ci --verbose
+        run: npm publish --access public --provenance
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
