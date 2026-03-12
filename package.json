@@ -23,6 +23,10 @@
   },
   "author": "ryan waskiewicz",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/stencil-community/stencil-web-types.git"
+  },
   "devDependencies": {
     "@ionic/prettier-config": "^4.0.0",
     "@release-it/conventional-changelog": "^10.0.0",
@@ -36,7 +40,11 @@
   },
   "prettier": "@ionic/prettier-config",
   "volta": {
-    "node": "22.22.1",
+    "node": "24.14.0",
     "npm": "11.11.0"
+  },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
   }
 }
