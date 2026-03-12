@@ -34,7 +34,7 @@
     {
       groupName: 'Node',
       matchPackageNames: ['@types/node', 'node'],
-      allowedVersions: '<23.0.0',
+      allowedVersions: '<25.0.0',
     },
     {
       groupName: 'Vitest',
