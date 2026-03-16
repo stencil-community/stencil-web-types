@@ -31,7 +31,7 @@
     "@ionic/prettier-config": "^4.0.0",
     "@release-it/conventional-changelog": "^10.0.0",
     "@stencil/core": "^4.13.0",
-    "@types/node": "^22.0.0",
+    "@types/node": "^24.0.0",
     "@vitest/coverage-v8": "^4.0.0",
     "prettier": "3.8.1",
     "release-it": "^19.0.0",
