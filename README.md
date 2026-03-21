@@ -13,7 +13,7 @@
     <img src="https://img.shields.io/discord/520266681499779082?color=7289DA&label=%23stencil&logo=discord&logoColor=white" alt="Official Ionic Discord" /></a>
 </p>
 
-A Stencil output target for generating [web types](https://plugins.jetbrains.com/docs/intellij/websymbols-web-types.html#file-structure) to provide intellisense for Stencil components in HTML and Vue files.
+A Stencil output target for generating [web types](https://plugins.jetbrains.com/docs/intellij/polysymbols-web-types.html) to provide intellisense for Stencil components in HTML and Vue files.
 
 ## Overview
 
