@@ -29,6 +29,8 @@ jobs:
         run: npm ci
       - name: Run Format Check
         run: npm run prettier.dry-run
+      - name: Run Lint Check
+        run: npm run lint
       - name: Build project
         run: npm run build
       - name: Run Tests

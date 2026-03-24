@@ -402,7 +402,7 @@ describe('generateElementInfo', () => {
  * defaults provided by this function.
  * @returns the stubbed `ComponentCompilerMeta`
  */
-export const stubComponentCompilerMeta = (overrides: Partial<ComponentCompilerMeta> = {}): ComponentCompilerMeta => ({
+const stubComponentCompilerMeta = (overrides: Partial<ComponentCompilerMeta> = {}): ComponentCompilerMeta => ({
   assetsDirs: [],
   attachInternalsCustomStates: [],
   attachInternalsMemberName: null,

@@ -1,6 +1,6 @@
 import type { BuildCtx, CompilerCtx, OutputTargetCustom, Config, Diagnostic } from '@stencil/core/internal';
 import { generateWebTypes } from './generate-web-types.js';
-import { extname, isAbsolute, join, sep } from 'path';
+import { extname, isAbsolute, join } from 'path';
 
 /**
  * A representation of the configuration object that this output target accepts at compile time
