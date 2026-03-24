@@ -5,7 +5,7 @@ import type {
   JsonDocsTag,
 } from '@stencil/core/internal';
 import { CssPart, ElementInfo } from '../index';
-import { JsonDocsPart } from '@stencil/core/internal/stencil-public-docs';
+import { JsonDocsPart } from '@stencil/core/internal';
 import { relative } from 'path';
 
 // https://plugins.jetbrains.com/docs/intellij/websymbols-web-types.html#web-components
