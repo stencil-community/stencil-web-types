@@ -58,7 +58,7 @@ describe('generateWebTypes', () => {
   });
 });
 
-export function mockBuildCtx(overrides: Partial<BuildCtx> = {}): BuildCtx {
+function mockBuildCtx(overrides: Partial<BuildCtx> = {}): BuildCtx {
   /**
    * Stencil's `BuildCtx` is a rather complex type. For now, let's simply stub it out with the information that we need
    * to get the tests going.
