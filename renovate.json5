@@ -39,7 +39,7 @@
     },
     {
       groupName: 'Release It',
-      matchPackageNames: ['release-it', '@release-it**/*'],
+      matchPackageNames: ['release-it', '@release-it/*'],
     },
   ],
   // Rebase the branch to avoid a 'stalled' dependency update due to it falling behind
