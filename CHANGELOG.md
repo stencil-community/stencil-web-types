@@ -1,5 +1,7 @@
 # Changelog
 
+## [1.0.13](https://github.com/stencil-community/stencil-web-types/compare/v1.0.12...v1.0.13) (2026-05-25)
+
 ## [1.0.12](https://github.com/stencil-community/stencil-web-types/compare/v1.0.11...v1.0.12) (2026-05-15)
 
 ## [1.0.11](https://github.com/stencil-community/stencil-web-types/compare/v1.0.9...v1.0.11) (2026-03-12)
