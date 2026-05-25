@@ -13,6 +13,9 @@ jobs:
     name: Publish Package
     runs-on: ubuntu-latest
     environment: publish
+    permissions:
+      id-token: write  # Required for OIDC provenance generation
+      contents: write  # Required for git operations
 
     steps:
       - name: Generate App token
