@@ -13,9 +13,6 @@ jobs:
     name: Publish Package
     runs-on: ubuntu-latest
     environment: publish
-    permissions:
-      id-token: write  # Required for OIDC
-      contents: write  # Required for git operations
 
     steps:
       - name: Generate App token
@@ -24,6 +21,7 @@ jobs:
         with:
           client-id: ${{ secrets.CLIENT_ID }}
           private-key: ${{ secrets.APP_PRIVATE_KEY }}
+          permission-contents: write
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
           fetch-depth: 0
