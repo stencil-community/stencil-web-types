@@ -29,7 +29,7 @@
    */
   packageRules: [
     {
-      groupName: 'Node',
+      groupName: 'Node + Types',
       matchPackageNames: ['@types/node', 'node'],
       allowedVersions: '<25.0.0',
     },
