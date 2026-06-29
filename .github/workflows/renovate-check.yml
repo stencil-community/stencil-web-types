@@ -23,5 +23,7 @@ jobs:
         with:
           node-version-file: 'package.json'
           cache: 'npm'
+      - name: Install dependencies
+        run: npm ci
       - name: Run Renovate Validator
-        run: npx --yes --package renovate -- renovate-config-validator
+        run: npx renovate-config-validator
