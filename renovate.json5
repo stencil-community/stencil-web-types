@@ -4,8 +4,7 @@
    * Documentation: https://docs.renovatebot.com/configuration-options
    *
    * This configuration file can be locally validated:
-   * 1. `npm i -g renovate` will install the validator
-   * 2. `renovate-config-validator` will run the validator
+   * `npx --no renovate-config-validator` will run the validator
    */
   dependencyDashboard: true,
   /**
