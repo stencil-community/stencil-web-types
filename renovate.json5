@@ -40,6 +40,13 @@
       groupName: 'Release It',
       matchPackageNames: ['release-it', '@release-it/*'],
     },
+    {
+      matchPackageNames: ['renovate'],
+      groupName: 'Renovate',
+      // these packages can be released multiple times a week, let's look at them every week
+      // Note: Timezone for the schedule is specified as UTC
+      schedule: ['before 11am on monday'],
+    },
   ],
   // Rebase the branch to avoid a 'stalled' dependency update due to it falling behind
   rebaseWhen: 'behind-base-branch',
