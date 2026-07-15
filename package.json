@@ -39,7 +39,7 @@
     "prettier": "3.9.4",
     "release-it": "^20.0.0",
     "renovate": "^43.235.0",
-    "typescript": "^6.0.0",
+    "typescript": "^7.0.0",
     "vitest": "^4.0.0"
   },
   "prettier": "@ionic/prettier-config",
