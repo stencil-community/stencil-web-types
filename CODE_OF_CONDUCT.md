@@ -17,23 +17,23 @@ diverse, inclusive, and healthy community.
 Examples of behavior that contributes to a positive environment for our
 community include the ability to:
 
-* Demonstrate empathy and kindness towards people
-* Be respectful of differing opinions, viewpoints, and experiences
-* Give and gracefully accept constructive feedback
-* Accept responsibility and apologize to those affected by our mistakes,
+- Demonstrate empathy and kindness towards people
+- Be respectful of differing opinions, viewpoints, and experiences
+- Give and gracefully accept constructive feedback
+- Accept responsibility and apologize to those affected by our mistakes,
   and learn from the experience
-* Focus on what is best not just for us as individuals, but for the
+- Focus on what is best not just for us as individuals, but for the
   overall community
 
 Examples of unacceptable behavior include:
 
-* The use of sexualized language or imagery, and sexual attention or
+- The use of sexualized language or imagery, and sexual attention or
   advances of any kind
-* Trolling, insulting or derogatory comments, and personal or political attacks
-* Public or private harassment
-* Publishing others' private information, such as a physical or email
+- Trolling, insulting or derogatory comments, and personal or political attacks
+- Public or private harassment
+- Publishing others' private information, such as a physical or email
   address, without their explicit permission
-* Other conduct which could reasonably be considered inappropriate in a
+- Other conduct which could reasonably be considered inappropriate in a
   professional setting
 
 ## Enforcement Responsibilities
@@ -106,7 +106,7 @@ Violating these terms may lead to a permanent ban.
 ### 4. Permanent Ban
 
 **Community Impact**: Demonstrating a pattern of violation of community
-standards, including sustained inappropriate behavior,  harassment of an
+standards, including sustained inappropriate behavior, harassment of an
 individual, or aggression toward or disparagement of classes of individuals.
 
 **Consequence**: A permanent ban from any sort of public interaction within
