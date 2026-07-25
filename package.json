@@ -14,7 +14,7 @@
     "build": "tsc -p .",
     "clean": "rm -rf dist",
     "prettier": "npm run prettier.base -- --write",
-    "prettier.base": "prettier --cache \"./src/**/*.ts\" \".release-it.json\" \"renovate.json5\" \".oxlintrc.json\"",
+    "prettier.base": "prettier --cache \"./src/**/*.ts\" \"CODE_OF_CONDUCT.md\" \"CONTRIBUTING.md\" \"README.md\" \".release-it.json\" \"renovate.json5\" \".oxlintrc.json\" \"vitest.config.ts\"",
     "lint": "oxlint",
     "lint:fix": "oxlint --fix",
     "prettier.dry-run": "npm run prettier.base -- --list-different",
