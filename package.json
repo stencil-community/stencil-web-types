@@ -45,7 +45,7 @@
   "prettier": "@ionic/prettier-config",
   "volta": {
     "node": "24.18.1",
-    "npm": "12.0.1"
+    "npm": "12.0.2"
   },
   "publishConfig": {
     "access": "public",
