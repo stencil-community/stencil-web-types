@@ -468,6 +468,7 @@ const stubComponentCompilerMeta = (overrides: Partial<ComponentCompilerMeta> = {
   hasVdomXlink: false,
   hasWatchCallback: false,
   htmlAttrNames: [],
+  htmlSlots: [],
   htmlParts: [],
   htmlTagNames: [],
   internal: false,
