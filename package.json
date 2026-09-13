@@ -33,7 +33,7 @@
     "@ionic/prettier-config": "^4.0.0",
     "@release-it/conventional-changelog": "^12.0.0",
     "@stencil/core": "^4.13.0",
-    "@types/node": "^24.0.0",
+    "@types/node": "^26.4.1",
     "@vitest/coverage-v8": "^4.0.0",
     "oxlint": "^1.57.0",
     "prettier": "3.9.6",
@@ -44,8 +44,8 @@
   },
   "prettier": "@ionic/prettier-config",
   "volta": {
-    "node": "24.20.0",
-    "npm": "12.0.2"
+    "node": "26.8.2",
+    "npm": "11.19.1"
   },
   "publishConfig": {
     "access": "public",
