@@ -91,7 +91,7 @@ describe('webTypesOutputTarget', () => {
           rootDir: normalize('/some/mocked/field'),
         };
 
-        expect(() => webTypesOutputTarget().validate!(config, [])).not.toThrowError();
+        expect(() => webTypesOutputTarget().validate!(config, [])).not.toThrow();
       });
 
       describe('no rootDir set', () => {
@@ -99,7 +99,7 @@ describe('webTypesOutputTarget', () => {
           'Unable to determine the Stencil root directory. Exiting without generating web types.';
 
         it('throws an error when the root dir is set to undefined', () => {
-          expect(() => webTypesOutputTarget().validate!({ rootDir: undefined }, [])).toThrowError(EXPECTED_ERR_MSG);
+          expect(() => webTypesOutputTarget().validate!({ rootDir: undefined }, [])).toThrow(EXPECTED_ERR_MSG);
         });
 
         it('throws an error when the root dir is missing', () => {
