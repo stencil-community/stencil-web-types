@@ -1,7 +1,7 @@
 # Fails when .github/workflows/actions.lock is out of sync with the
 # workflows or a locked pin no longer verifies upstream.
 
-name: verify-lockfile
+name: Verify GH Actions Lockfile
 
 on:
   pull_request:
