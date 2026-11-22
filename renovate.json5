@@ -6,7 +6,9 @@
    * This configuration file can be locally validated:
    * `npx --no renovate-config-validator` will run the validator
    */
-  dependencyDashboard: true,
+  dependencyDashboard: {
+    enabled: true,
+  },
   /**
    * Apply these labels to every PR
    */
