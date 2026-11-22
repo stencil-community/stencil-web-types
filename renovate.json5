@@ -1,71 +1,31 @@
 {
-  $schema: 'https://docs.renovatebot.com/renovate-schema.json',
-  /**
-   * Documentation: https://docs.renovatebot.com/configuration-options
-   *
-   * This configuration file can be locally validated:
-   * `npx --no renovate-config-validator` will run the validator
-   */
-  dependencyDashboard: true,
-  /**
-   * Apply these labels to every PR
-   */
-  labels: ['dependencies'],
-  /**
-   * The minimum age (in days) for updates that have a release timestamp header to be PR'ed.
-   * This will not batch releases together - if package A gets a release on Monday, Tuesday and Wednesday and has a
-   * `minimumReleaseAge: 3` and runs every day, then a PR will be created on:
-   * - Next Monday (for Monday's release)
-   * - Next Tuesday (for Tuesday's release)
-   * - Next Wednesday (for Wednesday's release)
-   *
-   * This setting is to prevent a compromised package from being merged into the project in the first seven days of its
-   * release date
-   */
-  minimumReleaseAge: '7 days',
-  /**
-   * Note: Renovate will evaluate all packageRules and not stop once it gets a first match.
-   */
+  $schema: "https://docs.renovatebot.com/renovate-schema.json",
+  dependencyDashboard: {
+    enabled: true,
+  },
+  labels: ["dependencies"],
+  minimumReleaseAge: "7 days",
   packageRules: [
     {
-      groupName: 'Node + Types',
-      matchPackageNames: ['@types/node', 'node'],
-      allowedVersions: '<27.0.0',
+      groupName: "Node + Types",
+      matchPackageNames: ["@types/node", "node"],
+      allowedVersions: "<27.0.0",
     },
     {
-      groupName: 'Vitest',
-      matchPackageNames: ['@vitest{/,}**', 'vitest{/,}**'],
+      groupName: "Vitest",
+      matchPackageNames: ["@vitest{/,}**", "vitest{/,}**"],
     },
     {
-      groupName: 'Release It',
-      matchPackageNames: ['release-it', '@release-it/*'],
+      groupName: "Release It",
+      matchPackageNames: ["release-it", "@release-it/*"],
     },
     {
-      matchPackageNames: ['renovate'],
-      groupName: 'Renovate',
-      // these packages can be released multiple times a week, let's look at them every week
-      // Note: Timezone for the schedule is specified as UTC
-      schedule: ['before 11am on monday'],
+      matchPackageNames: ["renovate"],
+      groupName: "Renovate",
+      schedule: ["before 11am on monday"],
     },
   ],
-  // Rebase the branch to avoid a 'stalled' dependency update due to it falling behind
-  rebaseWhen: 'behind-base-branch',
-  /**
-   * Run every Monday and Thursday between midnight at 11 AM (in UTC)
-   *
-   * Monday and Thursday were chosen to prevent spikes/bursts of PRs from Renovate on a single day of the week
-   *
-   * We use cron syntax here as it's more deterministic/easier to provide a value that we know that Renovate will
-   * accept, compared to the natural language syntax which is (subjectively) trickier to test without merging first.
-   *
-   * {@see https://crontab.guru} for debugging cron schedules
-   */
-  schedule: ['* 0-11 * * 1,4'],
-  /**
-   * Ensure semantic commits are enabled for commits + PR titles.
-   *
-   * By default, Angular-style semantic commits will have a type of 'chore' and a scope of 'deps':
-   * `chore(deps): _your git commit title here_`
-   */
-  semanticCommits: 'enabled',
+  rebaseWhen: "behind-base-branch",
+  schedule: ["* 0-11 * * 1,4"],
+  semanticCommits: "enabled",
 }
