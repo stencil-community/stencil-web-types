@@ -1,4 +1,4 @@
-import type { BuildCtx } from '@stencil/core/internal';
+import type { BuildCtx } from '@stencil/core/compiler';
 import { generateElementInfo } from './contributions/html-contributions';
 import { generateJsEvents, generateJsProperties } from './contributions/js-contributions';
 import { WebType } from './index';
@@ -12,8 +12,8 @@ import { WebType } from './index';
 export const generateWebTypes = (buildCtx: BuildCtx, stencilRootDir: string): WebType => {
   const { components, packageJson } = buildCtx;
   const webTypesInfo = getWebTypesInfo(
-    packageJson.version ?? 'UNKNOWN_VERSION',
-    packageJson.name ?? 'UNKNOWN_PKG_NAME',
+    packageJson?.version ?? 'UNKNOWN_VERSION',
+    packageJson?.name ?? 'UNKNOWN_PKG_NAME',
   );
 
   return {

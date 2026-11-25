@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { BuildCtx } from '@stencil/core/internal';
+import { BuildCtx } from '@stencil/core/compiler';
 import { WebType } from './index';
 import { getWebTypesInfo, generateWebTypes } from './generate-web-types';
 

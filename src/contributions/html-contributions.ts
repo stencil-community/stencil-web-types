@@ -1,11 +1,10 @@
 import type {
-  CompilerJsDocTagInfo,
   ComponentCompilerMeta,
   ComponentCompilerProperty,
+  JsonDocsPart,
   JsonDocsTag,
-} from '@stencil/core/internal';
+} from '@stencil/core/compiler';
 import { CssPart, ElementInfo } from '../index';
-import { JsonDocsPart } from '@stencil/core/internal';
 import { relative } from 'path';
 
 // https://plugins.jetbrains.com/docs/intellij/websymbols-web-types.html#web-components
@@ -53,8 +52,8 @@ export const generateElementInfo = (
         }),
       slots: cmpMeta.docs.tags
         // we only want '@slot' tags with _some_ amount of text on them
-        .filter((tag: CompilerJsDocTagInfo) => tag.name.toLowerCase() === 'slot' && tag.text)
-        .map((slotTag: CompilerJsDocTagInfo) => {
+        .filter((tag) => tag.name.toLowerCase() === 'slot' && tag.text)
+        .map((slotTag) => {
           // Stencil supports the following ways of recording slot data in a class component's JSDoc:
           //   1. Document a default slot, with a description:
           //   `@slot - Content is placed between the named slots if provided without a slot.`

@@ -5,7 +5,7 @@ import { Component, Prop, h } from '@stencil/core';
  */
 @Component({
   tag: 'my-component',
-  shadow: true,
+  encapsulation: { type: 'shadow' },
 })
 export class MyComponent {
   /**

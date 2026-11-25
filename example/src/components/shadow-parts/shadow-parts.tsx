@@ -11,7 +11,7 @@ import { Component, h } from '@stencil/core';
 @Component({
   tag: 'shadow-parts',
   styles: 'div { background: LightGray; }',
-  shadow: true,
+  encapsulation: { type: 'shadow' },
 })
 export class ShadowParts {
 

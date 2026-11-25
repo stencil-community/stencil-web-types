@@ -1,4 +1,4 @@
-import type { ComponentCompilerEvent, ComponentCompilerMeta, ComponentCompilerProperty } from '@stencil/core/internal';
+import type { ComponentCompilerEvent, ComponentCompilerMeta, ComponentCompilerProperty } from '@stencil/core/compiler';
 
 /**
  * Generate an array of symbol contributions to the JS namespace

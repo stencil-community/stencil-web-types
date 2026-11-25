@@ -1,7 +1,7 @@
 import { beforeEach, describe, expect, it } from 'vitest';
 import { generateElementInfo } from './html-contributions';
 import { ElementInfo } from '../index';
-import { ComponentCompilerMeta } from '@stencil/core/internal';
+import { ComponentCompilerMeta } from '@stencil/core/compiler';
 import { join } from 'node:path';
 
 const MOCK_STENCIL_ROOT_DIR = '/';
@@ -419,6 +419,7 @@ const stubComponentCompilerMeta = (overrides: Partial<ComponentCompilerMeta> = {
   events: [],
   excludeFromCollection: false,
   formAssociated: false,
+  globalStyles: [],
   hasAttribute: false,
   hasAttributeChangedCallbackFn: false,
   hasComponentDidLoadFn: false,
@@ -438,12 +439,15 @@ const stubComponentCompilerMeta = (overrides: Partial<ComponentCompilerMeta> = {
   hasListenerTarget: false,
   hasListenerTargetBody: false,
   hasListenerTargetDocument: false,
-  hasListenerTargetParent: false,
   hasListenerTargetWindow: false,
   hasModernPropertyDecls: false,
   hasMember: false,
   hasMethod: false,
   hasMode: false,
+  hasPatchAll: false,
+  hasPatchChildren: false,
+  hasPatchClone: false,
+  hasPatchInsert: false,
   hasProp: false,
   hasPropBoolean: false,
   hasPropMutable: false,
@@ -452,6 +456,7 @@ const stubComponentCompilerMeta = (overrides: Partial<ComponentCompilerMeta> = {
   hasReflect: false,
   hasRenderFn: false,
   hasSerializer: false,
+  hasSignalsImport: false,
   hasSlot: false,
   hasState: false,
   hasStyle: false,
@@ -461,6 +466,7 @@ const stubComponentCompilerMeta = (overrides: Partial<ComponentCompilerMeta> = {
   hasVdomKey: false,
   hasVdomListener: false,
   hasVdomPropOrAttr: false,
+  hasVdomPropOrAttrPrefix: false,
   hasVdomRef: false,
   hasVdomRender: false,
   hasVdomStyle: false,
@@ -478,10 +484,15 @@ const stubComponentCompilerMeta = (overrides: Partial<ComponentCompilerMeta> = {
   jsFilePath: '/some/stubbed/path/my-component.js',
   listeners: [],
   methods: [],
+  patches: null,
   potentialCmpRefs: [],
   properties: [],
   serializers: [],
+  shadowClonable: false,
   shadowDelegatesFocus: false,
+  shadowMode: 'closed',
+  shadowReferenceTarget: null,
+  shadowSerializable: false,
   slotAssignment: null,
   sourceFilePath: `/${MOCK_MODULE_PATH}`,
   sourceMapPath: '/some/stubbed/path/my-component.js.map',

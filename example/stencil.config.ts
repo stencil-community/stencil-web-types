@@ -5,8 +5,7 @@ export const config: Config = {
   namespace: 'example',
   outputTargets: [
     {
-      type: 'www',
-      serviceWorker: null, // disable service workers
+      type: 'www', // disable service workers
     },
     webTypesOutputTarget(),
   ],
