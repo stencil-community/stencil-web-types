@@ -7,7 +7,7 @@ import { Component, h } from '@stencil/core';
  */
 @Component({
   tag: 'slot-example',
-  shadow: true,
+  encapsulation: { type: 'shadow' },
 })
 export class SlotExample {
   render() {
