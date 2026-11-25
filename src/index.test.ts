@@ -1,6 +1,6 @@
 import { afterEach, beforeEach, describe, expect, it, MockInstance, vi } from 'vitest';
 import { type WebTypesConfig, webTypesOutputTarget } from './index.js';
-import { type Config } from '@stencil/core/internal';
+import { type Config } from '@stencil/core/compiler';
 import { join, normalize } from 'path';
 
 describe('webTypesOutputTarget', () => {

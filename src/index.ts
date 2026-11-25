@@ -1,4 +1,4 @@
-import type { BuildCtx, CompilerCtx, OutputTargetCustom, Config, Diagnostic } from '@stencil/core/internal';
+import type { BuildCtx, CompilerCtx, OutputTargetCustom, Config, Diagnostic } from '@stencil/core/compiler';
 import { generateWebTypes } from './generate-web-types.js';
 import { extname, isAbsolute, join } from 'path';
 
